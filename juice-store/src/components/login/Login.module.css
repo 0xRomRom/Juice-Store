@@ -1,0 +1,69 @@
+.app {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  position: relative;
+  width: 20rem;
+  height: 30rem;
+  background-color: rgb(55, 55, 225);
+  border-radius: 0.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.label1 {
+  color: white;
+  font-family: "Open Sans";
+  margin-right: 2.7rem;
+}
+
+.label2 {
+  color: white;
+  font-family: "Open Sans";
+  margin-right: 4.3rem;
+}
+
+.username {
+  margin: 1rem 0rem;
+  border-radius: 0.2rem;
+  border: none;
+  outline: 0;
+  padding: 0.3rem 0rem;
+  padding-left: 0.5rem;
+}
+
+.password {
+  margin: 1rem 0rem;
+  border-radius: 0.2rem;
+  border: none;
+  outline: 0;
+  padding: 0.3rem 0rem;
+  padding-left: 0.5rem;
+}
+
+.login {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  outline: 0;
+  border: none;
+  border: 2px solid white;
+  background-color: transparent;
+  color: white;
+  font-family: "Open Sans";
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.login:hover {
+  background-color: white;
+  color: rgb(55, 55, 225);
+}
