@@ -3,6 +3,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useRef } from "react";
 import { initializeApp } from "firebase/app";
 import { useNavigate } from "react-router-dom";
+import logo from "../img/moonjuice.png";
 
 // Firebase config
 const firebaseConfig = {
@@ -32,11 +33,9 @@ const Login = (props) => {
       passwordRef.current.value
     )
       .then((userCredential) => {
-        navigate("/dashboard");
         const user = userCredential.user;
-        console.log(user);
         props.setUser(user.reloadUserInfo.localId);
-        console.log(user.reloadUserInfo.localId);
+        navigate("/dashboard");
       })
       .catch((error) => {
         console.log(app);
@@ -47,6 +46,7 @@ const Login = (props) => {
 
   return (
     <div className={cl.app}>
+      <img src={logo} alt="Moon Juice Logo" className={cl.moonjuice} />
       <form className={cl.form}>
         <label htmlFor="username" className={cl.label1}>
           Gebruikersnaam
