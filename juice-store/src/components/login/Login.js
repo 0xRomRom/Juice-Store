@@ -1,11 +1,10 @@
 import cl from "./Login.module.css";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useRef } from "react";
-
 import { initializeApp } from "firebase/app";
+import { useNavigate } from "react-router-dom";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyDLSF6SuNkP-F2okC06-eqlsExrPfiholU",
   authDomain: "moon-juice.firebaseapp.com",
@@ -17,18 +16,15 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-
+const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 
-const Login = () => {
+const Login = (props) => {
+  const navigate = useNavigate();
   const usernameRef = useRef("");
   const passwordRef = useRef("");
 
   const submitHandler = (e) => {
-    console.log(usernameRef.current.value);
-    console.log(passwordRef.current.value);
-
     e.preventDefault();
     signInWithEmailAndPassword(
       auth,
@@ -36,15 +32,16 @@ const Login = () => {
       passwordRef.current.value
     )
       .then((userCredential) => {
-        // Signed in
+        navigate("/dashboard");
         const user = userCredential.user;
         console.log(user);
-        alert(user.email);
-        // ...
+        props.setUser(user.reloadUserInfo.localId);
+        console.log(user.reloadUserInfo.localId);
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        console.log(app);
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
       });
   };
 
