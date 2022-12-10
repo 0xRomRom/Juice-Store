@@ -1,6 +1,6 @@
 import cl from "./GegevensModal.module.css";
 import React, { useState, useEffect } from "react";
-import { FaWindowClose, FaSave } from "react-icons/fa";
+import { FaWindowClose, FaSave, FaCloudDownloadAlt } from "react-icons/fa";
 
 const GegevensModal = (props) => {
   const [naam, setNaam] = useState("");
@@ -254,6 +254,11 @@ const GegevensModal = (props) => {
               </button>
             ) : null}
           </div>
+        </div>
+        <div className={cl.submitBox}>
+          <button className={cl.bijwerken}>
+            Bijwerken <FaCloudDownloadAlt />
+          </button>
         </div>
       </div>
     </>
