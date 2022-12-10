@@ -36,3 +36,11 @@
   background-color: rgb(105, 255, 254);
   color: black;
 }
+
+.geen {
+  font-family: "Open Sans";
+  color: red;
+  position: relative;
+  top: 2rem;
+  left: 1.5rem;
+}

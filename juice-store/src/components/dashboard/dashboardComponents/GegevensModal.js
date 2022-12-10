@@ -30,6 +30,7 @@ const GegevensModal = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      props.gegevens(true);
       const fetcher = await fetch(
         `https://moon-juice-default-rtdb.europe-west1.firebasedatabase.app/${props.user}/postalInfo.json`
       );
@@ -53,6 +54,7 @@ const GegevensModal = (props) => {
   }, []);
 
   const bijwerkenHandler = async () => {
+    props.gegevens(true);
     fetch(
       `https://moon-juice-default-rtdb.europe-west1.firebasedatabase.app/${props.user}/postalInfo.json`,
       {
