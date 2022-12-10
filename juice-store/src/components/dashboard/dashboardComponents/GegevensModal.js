@@ -32,8 +32,17 @@ const GegevensModal = (props) => {
   });
 
   useEffect(() => {
-    setInputNaam(props.userData.naam);
-  }, [props]);
+    const fetchData = async () => {
+      const fetcher = await fetch(
+        `https://moon-juice-default-rtdb.europe-west1.firebasedatabase.app/${props.user}/postalInfo.json`
+      );
+      const result = await fetcher.json();
+      console.log(result);
+      setInfoObject(result);
+      console.log(infoObject);
+    };
+    fetchData();
+  }, []);
 
   const bijwerkenHandler = async () => {
     fetch(
@@ -118,7 +127,7 @@ const GegevensModal = (props) => {
             </span>
             <input
               type="text"
-              placeholder={naam || "?"}
+              placeholder={infoObject.naam || "?"}
               onChange={(e) => setInputNaam(e.target.value)}
               value={inputNaam || ""}
             ></input>
@@ -132,7 +141,7 @@ const GegevensModal = (props) => {
           <div className={cl.row}>
             <span
               style={{
-                backgroundColor: provincie ? "green" : "black",
+                backgroundColor: inputProvincie ? "green" : "black",
               }}
             >
               *Provincie
@@ -141,6 +150,7 @@ const GegevensModal = (props) => {
               type="text"
               placeholder={provincie || "?"}
               onChange={(e) => setInputProvincie(e.target.value)}
+              value={inputProvincie || ""}
             ></input>
             {inputProvincie ? (
               <button onClick={addProvincie}>

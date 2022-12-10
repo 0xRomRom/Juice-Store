@@ -10,15 +10,6 @@ const UserInfo = (props) => {
 
   const openGegevensModal = () => {
     setGegevensModal(true);
-    const fetchData = async () => {
-      const fetcher = await fetch(
-        `https://moon-juice-default-rtdb.europe-west1.firebasedatabase.app/${props.user}/postalInfo.json`
-      );
-      const result = await fetcher.json();
-      console.log(result);
-      setFetchResults(result);
-    };
-    fetchData();
   };
 
   return (
@@ -30,11 +21,7 @@ const UserInfo = (props) => {
         </button>
       ) : null}
       {gegevensModal ? (
-        <GegevensModal
-          closed={setGegevensModal}
-          user={props.user}
-          userData={fetchResults}
-        />
+        <GegevensModal closed={setGegevensModal} user={props.user} />
       ) : null}
     </div>
   );
