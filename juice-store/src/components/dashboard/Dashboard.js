@@ -2,6 +2,7 @@ import cl from "./Dashboard.module.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Nav from "./dashboardComponents/Nav";
+import UserInfo from "./dashboardComponents/UserInfo";
 
 const Dashboard = (props) => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ const Dashboard = (props) => {
   return (
     <div className={cl.dashboard}>
       <Nav setUser={props.setUser} />
+      <UserInfo />
     </div>
   );
 };

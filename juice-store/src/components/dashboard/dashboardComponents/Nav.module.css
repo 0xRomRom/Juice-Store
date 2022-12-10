@@ -24,7 +24,7 @@
 
 .logout {
   font-size: 2rem;
-  color: rgb(230, 223, 223);
+  color: rgb(211, 207, 207);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   display: flex;
@@ -42,7 +42,7 @@
 
 .cart {
   font-size: 2rem;
-  color: rgb(230, 223, 223);
+  color: rgb(211, 207, 207);
   cursor: pointer;
   display: flex;
   justify-content: center;
