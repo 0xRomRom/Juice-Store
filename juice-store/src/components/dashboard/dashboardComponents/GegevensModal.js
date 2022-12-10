@@ -1,23 +1,20 @@
 import cl from "./GegevensModal.module.css";
 import React, { useState, useEffect } from "react";
-import { FaWindowClose, FaSave, FaCloudDownloadAlt } from "react-icons/fa";
+import {
+  FaWindowClose,
+  FaSave,
+  FaCloudDownloadAlt,
+  FaTrashAlt,
+} from "react-icons/fa";
 
 const GegevensModal = (props) => {
-  const [naam, setNaam] = useState("");
   const [inputNaam, setInputNaam] = useState("");
-  const [provincie, setProvincie] = useState("");
   const [inputProvincie, setInputProvincie] = useState("");
-  const [woonplaats, setWoonplaats] = useState("");
   const [inputWoonplaats, setInputWoonplaats] = useState("");
-  const [postcode, setPostcode] = useState("");
   const [inputPostcode, setInputPostcode] = useState("");
-  const [straatnaam, setStraatnaam] = useState("");
   const [inputStraatnaam, setInputStraatnaam] = useState("");
-  const [huisnummer, setHuisnummer] = useState("");
   const [inputHuisnummer, setInputHuisnummer] = useState("");
-  const [telefoonnummer, setTelefoonnummer] = useState("");
   const [inputTelefoonnummer, setInputTelefoonnummer] = useState("");
-  const [email, setEmail] = useState("");
   const [inputEmail, setInputEmail] = useState("");
 
   const [infoObject, setInfoObject] = useState({
@@ -70,50 +67,82 @@ const GegevensModal = (props) => {
   };
 
   const addNaam = () => {
-    setNaam(inputNaam);
     setInfoObject({ ...infoObject, naam: inputNaam });
     setInputNaam("");
   };
 
+  const deleteNaam = () => {
+    setInfoObject({ ...infoObject, naam: "" });
+    setInputNaam("");
+  };
+
   const addProvincie = () => {
-    setProvincie(inputProvincie);
     setInfoObject({ ...infoObject, provincie: inputProvincie });
     setInputProvincie("");
   };
 
+  const deleteProvincie = () => {
+    setInfoObject({ ...infoObject, provincie: "" });
+    setInputProvincie("");
+  };
+
   const addWoonplaats = () => {
-    setWoonplaats(inputWoonplaats);
     setInfoObject({ ...infoObject, woonplaats: inputWoonplaats });
     setInputWoonplaats("");
   };
 
+  const deleteWoonplaats = () => {
+    setInfoObject({ ...infoObject, woonplaats: "" });
+    setInputWoonplaats("");
+  };
+
   const addPostcode = () => {
-    setPostcode(inputPostcode);
     setInfoObject({ ...infoObject, postcode: inputPostcode });
     setInputPostcode("");
   };
 
+  const deletePostcode = () => {
+    setInfoObject({ ...infoObject, postcode: "" });
+    setInputPostcode("");
+  };
+
   const addStraatnaam = () => {
-    setStraatnaam(inputStraatnaam);
     setInfoObject({ ...infoObject, straatnaam: inputStraatnaam });
     setInputStraatnaam("");
   };
 
+  const deleteStraatnaam = () => {
+    setInfoObject({ ...infoObject, straatnaam: "" });
+    setInputStraatnaam("");
+  };
+
   const addHuisnummer = () => {
-    setHuisnummer(inputHuisnummer);
     setInfoObject({ ...infoObject, huisnummer: inputHuisnummer });
     setInputHuisnummer("");
   };
 
+  const deleteHuisnummer = () => {
+    setInfoObject({ ...infoObject, huisnummer: "" });
+    setInputStraatnaam("");
+  };
+
   const addTelefoonnummer = () => {
-    setTelefoonnummer(inputTelefoonnummer);
     setInfoObject({ ...infoObject, telefoonnummer: inputTelefoonnummer });
     setInputTelefoonnummer("");
   };
 
+  const deleteTelefoonnummer = () => {
+    setInfoObject({ ...infoObject, telefoonnummer: "" });
+    setInputTelefoonnummer("");
+  };
+
   const addEmail = () => {
-    setEmail(inputEmail);
     setInfoObject({ ...infoObject, email: inputEmail });
+    setInputEmail("");
+  };
+
+  const deleteEmail = () => {
+    setInfoObject({ ...infoObject, email: "" });
     setInputEmail("");
   };
 
@@ -141,13 +170,22 @@ const GegevensModal = (props) => {
               type="text"
               placeholder={infoObject.naam || "?"}
               onChange={(e) => setInputNaam(e.target.value)}
-              value={inputNaam || ""}
+              value={inputNaam}
             ></input>
             {inputNaam ? (
               <button onClick={addNaam}>
                 <FaSave className={cl.saveIcon} />
               </button>
-            ) : null}
+            ) : (
+              <button
+                onClick={deleteNaam}
+                style={{
+                  display: infoObject.naam === "" ? "none" : "flex",
+                }}
+              >
+                <FaTrashAlt className={cl.saveIcon} />
+              </button>
+            )}
           </div>
 
           <div className={cl.row}>
@@ -168,7 +206,16 @@ const GegevensModal = (props) => {
               <button onClick={addProvincie}>
                 <FaSave className={cl.saveIcon} />
               </button>
-            ) : null}
+            ) : (
+              <button
+                onClick={deleteProvincie}
+                style={{
+                  display: infoObject.provincie === "" ? "none" : "flex",
+                }}
+              >
+                <FaTrashAlt className={cl.saveIcon} />
+              </button>
+            )}
           </div>
 
           <div className={cl.row}>
@@ -189,7 +236,16 @@ const GegevensModal = (props) => {
               <button onClick={addWoonplaats}>
                 <FaSave className={cl.saveIcon} />
               </button>
-            ) : null}
+            ) : (
+              <button
+                onClick={deleteWoonplaats}
+                style={{
+                  display: infoObject.woonplaats === "" ? "none" : "flex",
+                }}
+              >
+                <FaTrashAlt className={cl.saveIcon} />
+              </button>
+            )}
           </div>
 
           <div className={cl.row}>
@@ -210,7 +266,16 @@ const GegevensModal = (props) => {
               <button onClick={addPostcode}>
                 <FaSave className={cl.saveIcon} />
               </button>
-            ) : null}
+            ) : (
+              <button
+                onClick={deletePostcode}
+                style={{
+                  display: infoObject.postcode === "" ? "none" : "flex",
+                }}
+              >
+                <FaTrashAlt className={cl.saveIcon} />
+              </button>
+            )}
           </div>
 
           <div className={cl.row}>
@@ -231,7 +296,16 @@ const GegevensModal = (props) => {
               <button onClick={addStraatnaam}>
                 <FaSave className={cl.saveIcon} />
               </button>
-            ) : null}
+            ) : (
+              <button
+                onClick={deleteStraatnaam}
+                style={{
+                  display: infoObject.straatnaam === "" ? "none" : "flex",
+                }}
+              >
+                <FaTrashAlt className={cl.saveIcon} />
+              </button>
+            )}
           </div>
 
           <div className={cl.row}>
@@ -252,7 +326,16 @@ const GegevensModal = (props) => {
               <button onClick={addHuisnummer}>
                 <FaSave className={cl.saveIcon} />
               </button>
-            ) : null}
+            ) : (
+              <button
+                onClick={deleteHuisnummer}
+                style={{
+                  display: infoObject.huisnummer === "" ? "none" : "flex",
+                }}
+              >
+                <FaTrashAlt className={cl.saveIcon} />
+              </button>
+            )}
           </div>
 
           <div className={cl.row}>
@@ -273,7 +356,16 @@ const GegevensModal = (props) => {
               <button onClick={addTelefoonnummer}>
                 <FaSave className={cl.saveIcon} />
               </button>
-            ) : null}
+            ) : (
+              <button
+                onClick={deleteTelefoonnummer}
+                style={{
+                  display: infoObject.telefoonnummer === "" ? "none" : "flex",
+                }}
+              >
+                <FaTrashAlt className={cl.saveIcon} />
+              </button>
+            )}
           </div>
 
           <div className={cl.row}>
@@ -294,7 +386,16 @@ const GegevensModal = (props) => {
               <button onClick={addEmail}>
                 <FaSave className={cl.saveIcon} />
               </button>
-            ) : null}
+            ) : (
+              <button
+                onClick={deleteEmail}
+                style={{
+                  display: infoObject.email === "" ? "none" : "flex",
+                }}
+              >
+                <FaTrashAlt className={cl.saveIcon} />
+              </button>
+            )}
           </div>
         </div>
         <div className={cl.submitBox}>
