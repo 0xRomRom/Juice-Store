@@ -37,9 +37,20 @@ const GegevensModal = (props) => {
         `https://moon-juice-default-rtdb.europe-west1.firebasedatabase.app/${props.user}/postalInfo.json`
       );
       const result = await fetcher.json();
-      console.log(result);
-      setInfoObject(result);
-      console.log(infoObject);
+      if (result === null) {
+        setInfoObject({
+          naam: "",
+          provincie: "",
+          woonplaats: "",
+          postcode: "",
+          straatnaam: "",
+          huisnummer: "",
+          telefoonnummer: "",
+          email: "",
+        });
+      } else {
+        setInfoObject(result);
+      }
     };
     fetchData();
   }, []);
@@ -55,6 +66,7 @@ const GegevensModal = (props) => {
         },
       }
     );
+    props.closed(false);
   };
 
   const addNaam = () => {
@@ -120,7 +132,7 @@ const GegevensModal = (props) => {
           <div className={cl.row}>
             <span
               style={{
-                backgroundColor: naam ? "green" : "black",
+                backgroundColor: infoObject.naam ? "green" : "black",
               }}
             >
               *Naam
@@ -141,14 +153,14 @@ const GegevensModal = (props) => {
           <div className={cl.row}>
             <span
               style={{
-                backgroundColor: inputProvincie ? "green" : "black",
+                backgroundColor: infoObject.provincie ? "green" : "black",
               }}
             >
               *Provincie
             </span>
             <input
               type="text"
-              placeholder={provincie || "?"}
+              placeholder={infoObject.provincie || "?"}
               onChange={(e) => setInputProvincie(e.target.value)}
               value={inputProvincie || ""}
             ></input>
@@ -162,15 +174,16 @@ const GegevensModal = (props) => {
           <div className={cl.row}>
             <span
               style={{
-                backgroundColor: woonplaats ? "green" : "black",
+                backgroundColor: infoObject.woonplaats ? "green" : "black",
               }}
             >
               *Woonplaats
             </span>
             <input
               type="text"
-              placeholder={woonplaats || "?"}
+              placeholder={infoObject.woonplaats || "?"}
               onChange={(e) => setInputWoonplaats(e.target.value)}
+              value={inputWoonplaats || ""}
             ></input>
             {inputWoonplaats ? (
               <button onClick={addWoonplaats}>
@@ -182,15 +195,16 @@ const GegevensModal = (props) => {
           <div className={cl.row}>
             <span
               style={{
-                backgroundColor: postcode ? "green" : "black",
+                backgroundColor: infoObject.postcode ? "green" : "black",
               }}
             >
               *Postcode
             </span>
             <input
               type="text"
-              placeholder={postcode || "?"}
+              placeholder={infoObject.postcode || "?"}
               onChange={(e) => setInputPostcode(e.target.value)}
+              value={inputPostcode || ""}
             ></input>
             {inputPostcode ? (
               <button onClick={addPostcode}>
@@ -202,15 +216,16 @@ const GegevensModal = (props) => {
           <div className={cl.row}>
             <span
               style={{
-                backgroundColor: straatnaam ? "green" : "black",
+                backgroundColor: infoObject.straatnaam ? "green" : "black",
               }}
             >
               *Straatnaam
             </span>
             <input
               type="text"
-              placeholder={straatnaam || "?"}
+              placeholder={infoObject.straatnaam || "?"}
               onChange={(e) => setInputStraatnaam(e.target.value)}
+              value={inputStraatnaam || ""}
             ></input>
             {inputStraatnaam ? (
               <button onClick={addStraatnaam}>
@@ -222,15 +237,16 @@ const GegevensModal = (props) => {
           <div className={cl.row}>
             <span
               style={{
-                backgroundColor: huisnummer ? "green" : "black",
+                backgroundColor: infoObject.huisnummer ? "green" : "black",
               }}
             >
               *Huisnummer
             </span>
             <input
               type="text"
-              placeholder={huisnummer || "?"}
+              placeholder={infoObject.huisnummer || "?"}
               onChange={(e) => setInputHuisnummer(e.target.value)}
+              value={inputHuisnummer || ""}
             ></input>
             {inputHuisnummer ? (
               <button onClick={addHuisnummer}>
@@ -242,15 +258,16 @@ const GegevensModal = (props) => {
           <div className={cl.row}>
             <span
               style={{
-                backgroundColor: telefoonnummer ? "green" : "black",
+                backgroundColor: infoObject.telefoonnummer ? "green" : "black",
               }}
             >
               *Telefoonnummer
             </span>
             <input
               type="text"
-              placeholder={telefoonnummer || "?"}
+              placeholder={infoObject.telefoonnummer || "?"}
               onChange={(e) => setInputTelefoonnummer(e.target.value)}
+              value={inputTelefoonnummer || ""}
             ></input>
             {inputTelefoonnummer ? (
               <button onClick={addTelefoonnummer}>
@@ -262,15 +279,16 @@ const GegevensModal = (props) => {
           <div className={cl.row}>
             <span
               style={{
-                backgroundColor: email ? "green" : "black",
+                backgroundColor: infoObject.email ? "green" : "black",
               }}
             >
               E-Mail
             </span>
             <input
               type="text"
-              placeholder={email || "?"}
+              placeholder={infoObject.email || "?"}
               onChange={(e) => setInputEmail(e.target.value)}
+              value={inputEmail || ""}
             ></input>
             {inputEmail ? (
               <button onClick={addEmail}>

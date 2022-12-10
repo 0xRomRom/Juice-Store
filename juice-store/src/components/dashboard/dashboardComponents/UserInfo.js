@@ -6,7 +6,6 @@ import GegevensModal from "./GegevensModal";
 const UserInfo = (props) => {
   const [gegevens, setGegevens] = useState(false);
   const [gegevensModal, setGegevensModal] = useState(false);
-  const [fetchResults, setFetchResults] = useState({});
 
   const openGegevensModal = () => {
     setGegevensModal(true);
