@@ -55,7 +55,6 @@
   font-family: "Open Sans";
   background-color: black;
   color: rgb(255, 255, 255);
-  border: 2px solid rgb(0, 0, 0);
   min-width: 14rem;
   height: 1.75rem;
   left: 5%;
@@ -92,7 +91,7 @@
 
 .row > input::placeholder {
   text-align: center;
-  color: red;
+  color: white;
 }
 
 .row > button {

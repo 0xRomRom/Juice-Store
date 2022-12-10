@@ -1,5 +1,5 @@
 import cl from "./GegevensModal.module.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaWindowClose, FaSave } from "react-icons/fa";
 
 const GegevensModal = (props) => {
@@ -17,9 +17,10 @@ const GegevensModal = (props) => {
   const [inputHuisnummer, setInputHuisnummer] = useState("");
   const [telefoonnummer, setTelefoonnummer] = useState("");
   const [inputTelefoonnummer, setInputTelefoonnummer] = useState("");
+  const [email, setEmail] = useState("");
   const [inputEmail, setInputEmail] = useState("");
 
-  const infoObject = {
+  const [infoObject, setInfoObject] = useState({
     naam: "",
     provincie: "",
     woonplaats: "",
@@ -28,13 +29,58 @@ const GegevensModal = (props) => {
     huisnummer: "",
     telefoonnummer: "",
     email: "",
-  };
+  });
+
+  useEffect(() => {
+    console.log(infoObject);
+  }, [infoObject]);
 
   const addNaam = () => {
-    infoObject.naam = naam;
-    console.log(infoObject);
     setNaam(inputNaam);
+    setInfoObject({ ...infoObject, naam: inputNaam });
     setInputNaam("");
+  };
+
+  const addProvincie = () => {
+    setProvincie(inputProvincie);
+    setInfoObject({ ...infoObject, provincie: inputProvincie });
+    setInputProvincie("");
+  };
+
+  const addWoonplaats = () => {
+    setWoonplaats(inputWoonplaats);
+    setInfoObject({ ...infoObject, woonplaats: inputWoonplaats });
+    setInputWoonplaats("");
+  };
+
+  const addPostcode = () => {
+    setPostcode(inputPostcode);
+    setInfoObject({ ...infoObject, postcode: inputPostcode });
+    setInputPostcode("");
+  };
+
+  const addStraatnaam = () => {
+    setStraatnaam(inputStraatnaam);
+    setInfoObject({ ...infoObject, straatnaam: inputStraatnaam });
+    setInputStraatnaam("");
+  };
+
+  const addHuisnummer = () => {
+    setHuisnummer(inputHuisnummer);
+    setInfoObject({ ...infoObject, huisnummer: inputHuisnummer });
+    setInputHuisnummer("");
+  };
+
+  const addTelefoonnummer = () => {
+    setTelefoonnummer(inputTelefoonnummer);
+    setInfoObject({ ...infoObject, telefoonnummer: inputTelefoonnummer });
+    setInputTelefoonnummer("");
+  };
+
+  const addEmail = () => {
+    setEmail(inputEmail);
+    setInfoObject({ ...infoObject, email: inputEmail });
+    setInputEmail("");
   };
 
   const closeHandler = () => {
@@ -68,93 +114,142 @@ const GegevensModal = (props) => {
               </button>
             ) : null}
           </div>
+
           <div className={cl.row}>
-            <span>*Provincie</span>
+            <span
+              style={{
+                backgroundColor: provincie ? "green" : "black",
+              }}
+            >
+              *Provincie
+            </span>
             <input
               type="text"
               placeholder={provincie || "?"}
-              onChange={(e) => setProvincie(e.target.value)}
+              onChange={(e) => setInputProvincie(e.target.value)}
             ></input>
-            {provincie ? (
-              <button>
+            {inputProvincie ? (
+              <button onClick={addProvincie}>
                 <FaSave className={cl.saveIcon} />
               </button>
             ) : null}
           </div>
+
           <div className={cl.row}>
-            <span>*Woonplaats</span>
+            <span
+              style={{
+                backgroundColor: woonplaats ? "green" : "black",
+              }}
+            >
+              *Woonplaats
+            </span>
             <input
               type="text"
               placeholder={woonplaats || "?"}
-              onChange={(e) => setWoonplaats(e.target.value)}
+              onChange={(e) => setInputWoonplaats(e.target.value)}
             ></input>
-            {woonplaats ? (
-              <button>
+            {inputWoonplaats ? (
+              <button onClick={addWoonplaats}>
                 <FaSave className={cl.saveIcon} />
               </button>
             ) : null}
           </div>
+
           <div className={cl.row}>
-            <span>*Postcode</span>
+            <span
+              style={{
+                backgroundColor: postcode ? "green" : "black",
+              }}
+            >
+              *Postcode
+            </span>
             <input
               type="text"
               placeholder={postcode || "?"}
-              onChange={(e) => setPostcode(e.target.value)}
+              onChange={(e) => setInputPostcode(e.target.value)}
             ></input>
-            {postcode ? (
-              <button>
+            {inputPostcode ? (
+              <button onClick={addPostcode}>
                 <FaSave className={cl.saveIcon} />
               </button>
             ) : null}
           </div>
+
           <div className={cl.row}>
-            <span>*Straatnaam</span>
+            <span
+              style={{
+                backgroundColor: straatnaam ? "green" : "black",
+              }}
+            >
+              *Straatnaam
+            </span>
             <input
               type="text"
               placeholder={straatnaam || "?"}
-              onChange={(e) => setStraatnaam(e.target.value)}
+              onChange={(e) => setInputStraatnaam(e.target.value)}
             ></input>
-            {straatnaam ? (
-              <button>
+            {inputStraatnaam ? (
+              <button onClick={addStraatnaam}>
                 <FaSave className={cl.saveIcon} />
               </button>
             ) : null}
           </div>
+
           <div className={cl.row}>
-            <span>*Huisnummer</span>
+            <span
+              style={{
+                backgroundColor: huisnummer ? "green" : "black",
+              }}
+            >
+              *Huisnummer
+            </span>
             <input
               type="text"
               placeholder={huisnummer || "?"}
-              onChange={(e) => setHuisnummer(e.target.value)}
+              onChange={(e) => setInputHuisnummer(e.target.value)}
             ></input>
-            {huisnummer ? (
-              <button>
+            {inputHuisnummer ? (
+              <button onClick={addHuisnummer}>
                 <FaSave className={cl.saveIcon} />
               </button>
             ) : null}
           </div>
+
           <div className={cl.row}>
-            <span>*Telefoonnummer</span>
+            <span
+              style={{
+                backgroundColor: telefoonnummer ? "green" : "black",
+              }}
+            >
+              *Telefoonnummer
+            </span>
             <input
               type="text"
               placeholder={telefoonnummer || "?"}
-              onChange={(e) => setTelefoonnummer(e.target.value)}
+              onChange={(e) => setInputTelefoonnummer(e.target.value)}
             ></input>
-            {telefoonnummer ? (
-              <button>
+            {inputTelefoonnummer ? (
+              <button onClick={addTelefoonnummer}>
                 <FaSave className={cl.saveIcon} />
               </button>
             ) : null}
           </div>
+
           <div className={cl.row}>
-            <span>E-Mail</span>
+            <span
+              style={{
+                backgroundColor: email ? "green" : "black",
+              }}
+            >
+              E-Mail
+            </span>
             <input
               type="text"
               placeholder={email || "?"}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setInputEmail(e.target.value)}
             ></input>
-            {email ? (
-              <button>
+            {inputEmail ? (
+              <button onClick={addEmail}>
                 <FaSave className={cl.saveIcon} />
               </button>
             ) : null}
