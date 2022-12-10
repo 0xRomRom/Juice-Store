@@ -15,7 +15,7 @@ const Dashboard = (props) => {
   return (
     <div className={cl.dashboard}>
       <Nav setUser={props.setUser} />
-      <UserInfo />
+      <UserInfo user={props.user} />
     </div>
   );
 };

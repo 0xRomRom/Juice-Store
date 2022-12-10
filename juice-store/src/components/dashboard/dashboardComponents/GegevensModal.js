@@ -32,8 +32,21 @@ const GegevensModal = (props) => {
   });
 
   useEffect(() => {
-    console.log(infoObject);
-  }, [infoObject]);
+    setInputNaam(props.userData.naam);
+  }, [props]);
+
+  const bijwerkenHandler = async () => {
+    fetch(
+      `https://moon-juice-default-rtdb.europe-west1.firebasedatabase.app/${props.user}/postalInfo.json`,
+      {
+        method: "PUT",
+        body: JSON.stringify(infoObject),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  };
 
   const addNaam = () => {
     setNaam(inputNaam);
@@ -107,6 +120,7 @@ const GegevensModal = (props) => {
               type="text"
               placeholder={naam || "?"}
               onChange={(e) => setInputNaam(e.target.value)}
+              value={inputNaam || ""}
             ></input>
             {inputNaam ? (
               <button onClick={addNaam}>
@@ -256,7 +270,7 @@ const GegevensModal = (props) => {
           </div>
         </div>
         <div className={cl.submitBox}>
-          <button className={cl.bijwerken}>
+          <button className={cl.bijwerken} onClick={bijwerkenHandler}>
             Bijwerken <FaCloudDownloadAlt />
           </button>
         </div>
