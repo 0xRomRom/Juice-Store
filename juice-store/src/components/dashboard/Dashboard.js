@@ -28,7 +28,11 @@ const Dashboard = (props) => {
         ordered={currentOrders}
       />
       {cartOpen ? (
-        <ShoppingCart closeCart={setCartOpen} orders={currentOrders} />
+        <ShoppingCart
+          closeCart={setCartOpen}
+          orders={currentOrders}
+          setOrders={setCurrentOrders}
+        />
       ) : null}
     </div>
   );

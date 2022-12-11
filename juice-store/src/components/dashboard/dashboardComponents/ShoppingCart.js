@@ -1,10 +1,14 @@
 import cl from "./ShoppingCart.module.css";
-import { FaTimesCircle } from "react-icons/fa";
+import { FaTimesCircle, FaTrash } from "react-icons/fa";
 
 const ShoppingCart = (props) => {
   const closeCart = () => {
     props.closeCart(false);
     console.log(props.orders);
+  };
+
+  const deleteHandler = (target) => {
+    props.setOrders(props.orders.filter((product, i) => i !== target));
   };
 
   return (
@@ -21,12 +25,15 @@ const ShoppingCart = (props) => {
             <span>Hoeveelheid</span>
           </div>
           <div className={cl.orderList}>
-            {props.orders.map((item) => {
+            {props.orders.map((item, i) => {
               return (
-                <ul key={Math.random()} className={cl.listItem}>
+                <ul key={i} className={cl.listItem}>
                   <li>{item.naam}</li>
                   <li>{item.nicotine} MG</li>
                   <li>{item.hoeveelheid}x</li>
+                  <li className={cl.end} onClick={() => deleteHandler(i)}>
+                    <FaTrash />
+                  </li>
                 </ul>
               );
             })}
