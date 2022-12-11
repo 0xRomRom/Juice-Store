@@ -9,6 +9,7 @@ const ShoppingCart = (props) => {
 
   const deleteHandler = (target) => {
     props.setOrders(props.orders.filter((product, i) => i !== target));
+    props.orderCount((prev) => prev - props.orders[target].hoeveelheid);
   };
 
   return (
