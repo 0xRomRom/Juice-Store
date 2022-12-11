@@ -19,14 +19,28 @@ const UserInfo = (props) => {
         `https://moon-juice-default-rtdb.europe-west1.firebasedatabase.app/${props.user}/postalInfo.json`
       );
       const result = await fetcher.json();
-      if (result === null) {
-        setGegevens(false);
-      } else {
-        setGegevens(true);
+      let totalLength = 0;
+      for (const res of Object.entries(result)) {
+        totalLength += res[1].length;
       }
+      if (totalLength !== 0) {
+        setGegevens(true);
+        return;
+      }
+      if (totalLength === 0) {
+        setGegevens(false);
+        return;
+      }
+
+      // if (result === null) {
+      //   setGegevens(false);
+      //   return;
+      // } else {
+      //   setGegevens(true);
+      // }
     };
     fetchData();
-  }, [fetching]);
+  }, [fetching, gegevens, props.user, setGegevens]);
 
   return (
     <div className={cl.modal}>

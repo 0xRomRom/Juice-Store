@@ -5,16 +5,27 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.564);
+  z-index: 40 !important;
+}
+
+.outerModal {
+  position: fixed;
+  left: 37.5vw;
+  width: 25vw;
+  height: 30rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 60 !important;
 }
 
 .modal {
-  position: fixed;
-  top: 15rem;
+  position: relative;
   width: 33rem;
-  left: 30%;
   height: 30rem;
   background: linear-gradient(180deg, rgb(194, 30, 255), blue);
   border-radius: 0.8rem;
+  z-index: 50 !important;
 }
 
 .close {
@@ -44,7 +55,6 @@
   width: 28.5rem;
   left: 2rem;
   height: 23rem;
-  /* border: 1px solid white; */
   display: flex;
   flex-direction: column;
   justify-content: center;

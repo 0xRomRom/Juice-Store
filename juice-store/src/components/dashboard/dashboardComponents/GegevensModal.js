@@ -1,7 +1,7 @@
 import cl from "./GegevensModal.module.css";
 import React, { useState, useEffect } from "react";
 import {
-  FaWindowClose,
+  FaTimesCircle,
   FaSave,
   FaCloudDownloadAlt,
   FaTrashAlt,
@@ -30,7 +30,6 @@ const GegevensModal = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      props.gegevens(true);
       const fetcher = await fetch(
         `https://moon-juice-default-rtdb.europe-west1.firebasedatabase.app/${props.user}/postalInfo.json`
       );
@@ -51,10 +50,9 @@ const GegevensModal = (props) => {
       }
     };
     fetchData();
-  }, []);
+  }, [props.user]);
 
   const bijwerkenHandler = async () => {
-    props.gegevens(true);
     fetch(
       `https://moon-juice-default-rtdb.europe-west1.firebasedatabase.app/${props.user}/postalInfo.json`,
       {
@@ -66,6 +64,18 @@ const GegevensModal = (props) => {
       }
     );
     props.closed(false);
+    let totalLength = 0;
+    for (const res of Object.entries(infoObject)) {
+      totalLength += res[1].length;
+    }
+    if (totalLength === 0) {
+      props.gegevens(false);
+      return;
+    }
+    if (totalLength !== 0) {
+      props.gegevens(true);
+      return;
+    }
   };
 
   const addNaam = () => {
@@ -155,255 +165,259 @@ const GegevensModal = (props) => {
   return (
     <>
       <div className={cl.backdrop} onClick={closeHandler}></div>
-      <div className={cl.modal}>
-        <div className={cl.closePosition}>
-          <FaWindowClose className={cl.close} onClick={closeHandler} />
-        </div>
-        <div className={cl.infoBox}>
-          <div className={cl.row}>
-            <span
-              style={{
-                backgroundColor: infoObject.naam ? "green" : "black",
-              }}
-            >
-              *Naam
-            </span>
-            <input
-              type="text"
-              placeholder={infoObject.naam || "?"}
-              onChange={(e) => setInputNaam(e.target.value)}
-              value={inputNaam}
-            ></input>
-            {inputNaam ? (
-              <button onClick={addNaam}>
-                <FaSave className={cl.saveIcon} />
-              </button>
-            ) : (
-              <button
-                onClick={deleteNaam}
+      <div className={cl.outerModal}>
+        <div className={cl.modal}>
+          <div className={cl.closePosition}>
+            <FaTimesCircle className={cl.close} onClick={closeHandler} />
+          </div>
+          <div className={cl.infoBox}>
+            <div className={cl.row}>
+              <span
                 style={{
-                  display: infoObject.naam === "" ? "none" : "flex",
+                  backgroundColor: infoObject.naam ? "green" : "black",
                 }}
               >
-                <FaTrashAlt className={cl.saveIcon} />
-              </button>
-            )}
-          </div>
+                *Naam
+              </span>
+              <input
+                type="text"
+                placeholder={infoObject.naam || "?"}
+                onChange={(e) => setInputNaam(e.target.value)}
+                value={inputNaam}
+              ></input>
+              {inputNaam ? (
+                <button onClick={addNaam}>
+                  <FaSave className={cl.saveIcon} />
+                </button>
+              ) : (
+                <button
+                  onClick={deleteNaam}
+                  style={{
+                    display: infoObject.naam === "" ? "none" : "flex",
+                  }}
+                >
+                  <FaTrashAlt className={cl.saveIcon} />
+                </button>
+              )}
+            </div>
 
-          <div className={cl.row}>
-            <span
-              style={{
-                backgroundColor: infoObject.provincie ? "green" : "black",
-              }}
-            >
-              *Provincie
-            </span>
-            <input
-              type="text"
-              placeholder={infoObject.provincie || "?"}
-              onChange={(e) => setInputProvincie(e.target.value)}
-              value={inputProvincie || ""}
-            ></input>
-            {inputProvincie ? (
-              <button onClick={addProvincie}>
-                <FaSave className={cl.saveIcon} />
-              </button>
-            ) : (
-              <button
-                onClick={deleteProvincie}
+            <div className={cl.row}>
+              <span
                 style={{
-                  display: infoObject.provincie === "" ? "none" : "flex",
+                  backgroundColor: infoObject.provincie ? "green" : "black",
                 }}
               >
-                <FaTrashAlt className={cl.saveIcon} />
-              </button>
-            )}
-          </div>
+                *Provincie
+              </span>
+              <input
+                type="text"
+                placeholder={infoObject.provincie || "?"}
+                onChange={(e) => setInputProvincie(e.target.value)}
+                value={inputProvincie || ""}
+              ></input>
+              {inputProvincie ? (
+                <button onClick={addProvincie}>
+                  <FaSave className={cl.saveIcon} />
+                </button>
+              ) : (
+                <button
+                  onClick={deleteProvincie}
+                  style={{
+                    display: infoObject.provincie === "" ? "none" : "flex",
+                  }}
+                >
+                  <FaTrashAlt className={cl.saveIcon} />
+                </button>
+              )}
+            </div>
 
-          <div className={cl.row}>
-            <span
-              style={{
-                backgroundColor: infoObject.woonplaats ? "green" : "black",
-              }}
-            >
-              *Woonplaats
-            </span>
-            <input
-              type="text"
-              placeholder={infoObject.woonplaats || "?"}
-              onChange={(e) => setInputWoonplaats(e.target.value)}
-              value={inputWoonplaats || ""}
-            ></input>
-            {inputWoonplaats ? (
-              <button onClick={addWoonplaats}>
-                <FaSave className={cl.saveIcon} />
-              </button>
-            ) : (
-              <button
-                onClick={deleteWoonplaats}
+            <div className={cl.row}>
+              <span
                 style={{
-                  display: infoObject.woonplaats === "" ? "none" : "flex",
+                  backgroundColor: infoObject.woonplaats ? "green" : "black",
                 }}
               >
-                <FaTrashAlt className={cl.saveIcon} />
-              </button>
-            )}
-          </div>
+                *Woonplaats
+              </span>
+              <input
+                type="text"
+                placeholder={infoObject.woonplaats || "?"}
+                onChange={(e) => setInputWoonplaats(e.target.value)}
+                value={inputWoonplaats || ""}
+              ></input>
+              {inputWoonplaats ? (
+                <button onClick={addWoonplaats}>
+                  <FaSave className={cl.saveIcon} />
+                </button>
+              ) : (
+                <button
+                  onClick={deleteWoonplaats}
+                  style={{
+                    display: infoObject.woonplaats === "" ? "none" : "flex",
+                  }}
+                >
+                  <FaTrashAlt className={cl.saveIcon} />
+                </button>
+              )}
+            </div>
 
-          <div className={cl.row}>
-            <span
-              style={{
-                backgroundColor: infoObject.postcode ? "green" : "black",
-              }}
-            >
-              *Postcode
-            </span>
-            <input
-              type="text"
-              placeholder={infoObject.postcode || "?"}
-              onChange={(e) => setInputPostcode(e.target.value)}
-              value={inputPostcode || ""}
-            ></input>
-            {inputPostcode ? (
-              <button onClick={addPostcode}>
-                <FaSave className={cl.saveIcon} />
-              </button>
-            ) : (
-              <button
-                onClick={deletePostcode}
+            <div className={cl.row}>
+              <span
                 style={{
-                  display: infoObject.postcode === "" ? "none" : "flex",
+                  backgroundColor: infoObject.postcode ? "green" : "black",
                 }}
               >
-                <FaTrashAlt className={cl.saveIcon} />
-              </button>
-            )}
-          </div>
+                *Postcode
+              </span>
+              <input
+                type="text"
+                placeholder={infoObject.postcode || "?"}
+                onChange={(e) => setInputPostcode(e.target.value)}
+                value={inputPostcode || ""}
+              ></input>
+              {inputPostcode ? (
+                <button onClick={addPostcode}>
+                  <FaSave className={cl.saveIcon} />
+                </button>
+              ) : (
+                <button
+                  onClick={deletePostcode}
+                  style={{
+                    display: infoObject.postcode === "" ? "none" : "flex",
+                  }}
+                >
+                  <FaTrashAlt className={cl.saveIcon} />
+                </button>
+              )}
+            </div>
 
-          <div className={cl.row}>
-            <span
-              style={{
-                backgroundColor: infoObject.straatnaam ? "green" : "black",
-              }}
-            >
-              *Straatnaam
-            </span>
-            <input
-              type="text"
-              placeholder={infoObject.straatnaam || "?"}
-              onChange={(e) => setInputStraatnaam(e.target.value)}
-              value={inputStraatnaam || ""}
-            ></input>
-            {inputStraatnaam ? (
-              <button onClick={addStraatnaam}>
-                <FaSave className={cl.saveIcon} />
-              </button>
-            ) : (
-              <button
-                onClick={deleteStraatnaam}
+            <div className={cl.row}>
+              <span
                 style={{
-                  display: infoObject.straatnaam === "" ? "none" : "flex",
+                  backgroundColor: infoObject.straatnaam ? "green" : "black",
                 }}
               >
-                <FaTrashAlt className={cl.saveIcon} />
-              </button>
-            )}
-          </div>
+                *Straatnaam
+              </span>
+              <input
+                type="text"
+                placeholder={infoObject.straatnaam || "?"}
+                onChange={(e) => setInputStraatnaam(e.target.value)}
+                value={inputStraatnaam || ""}
+              ></input>
+              {inputStraatnaam ? (
+                <button onClick={addStraatnaam}>
+                  <FaSave className={cl.saveIcon} />
+                </button>
+              ) : (
+                <button
+                  onClick={deleteStraatnaam}
+                  style={{
+                    display: infoObject.straatnaam === "" ? "none" : "flex",
+                  }}
+                >
+                  <FaTrashAlt className={cl.saveIcon} />
+                </button>
+              )}
+            </div>
 
-          <div className={cl.row}>
-            <span
-              style={{
-                backgroundColor: infoObject.huisnummer ? "green" : "black",
-              }}
-            >
-              *Huisnummer
-            </span>
-            <input
-              type="text"
-              placeholder={infoObject.huisnummer || "?"}
-              onChange={(e) => setInputHuisnummer(e.target.value)}
-              value={inputHuisnummer || ""}
-            ></input>
-            {inputHuisnummer ? (
-              <button onClick={addHuisnummer}>
-                <FaSave className={cl.saveIcon} />
-              </button>
-            ) : (
-              <button
-                onClick={deleteHuisnummer}
+            <div className={cl.row}>
+              <span
                 style={{
-                  display: infoObject.huisnummer === "" ? "none" : "flex",
+                  backgroundColor: infoObject.huisnummer ? "green" : "black",
                 }}
               >
-                <FaTrashAlt className={cl.saveIcon} />
-              </button>
-            )}
-          </div>
+                *Huisnummer
+              </span>
+              <input
+                type="text"
+                placeholder={infoObject.huisnummer || "?"}
+                onChange={(e) => setInputHuisnummer(e.target.value)}
+                value={inputHuisnummer || ""}
+              ></input>
+              {inputHuisnummer ? (
+                <button onClick={addHuisnummer}>
+                  <FaSave className={cl.saveIcon} />
+                </button>
+              ) : (
+                <button
+                  onClick={deleteHuisnummer}
+                  style={{
+                    display: infoObject.huisnummer === "" ? "none" : "flex",
+                  }}
+                >
+                  <FaTrashAlt className={cl.saveIcon} />
+                </button>
+              )}
+            </div>
 
-          <div className={cl.row}>
-            <span
-              style={{
-                backgroundColor: infoObject.telefoonnummer ? "green" : "black",
-              }}
-            >
-              *Telefoonnummer
-            </span>
-            <input
-              type="text"
-              placeholder={infoObject.telefoonnummer || "?"}
-              onChange={(e) => setInputTelefoonnummer(e.target.value)}
-              value={inputTelefoonnummer || ""}
-            ></input>
-            {inputTelefoonnummer ? (
-              <button onClick={addTelefoonnummer}>
-                <FaSave className={cl.saveIcon} />
-              </button>
-            ) : (
-              <button
-                onClick={deleteTelefoonnummer}
+            <div className={cl.row}>
+              <span
                 style={{
-                  display: infoObject.telefoonnummer === "" ? "none" : "flex",
+                  backgroundColor: infoObject.telefoonnummer
+                    ? "green"
+                    : "black",
                 }}
               >
-                <FaTrashAlt className={cl.saveIcon} />
-              </button>
-            )}
-          </div>
+                *Telefoonnummer
+              </span>
+              <input
+                type="text"
+                placeholder={infoObject.telefoonnummer || "?"}
+                onChange={(e) => setInputTelefoonnummer(e.target.value)}
+                value={inputTelefoonnummer || ""}
+              ></input>
+              {inputTelefoonnummer ? (
+                <button onClick={addTelefoonnummer}>
+                  <FaSave className={cl.saveIcon} />
+                </button>
+              ) : (
+                <button
+                  onClick={deleteTelefoonnummer}
+                  style={{
+                    display: infoObject.telefoonnummer === "" ? "none" : "flex",
+                  }}
+                >
+                  <FaTrashAlt className={cl.saveIcon} />
+                </button>
+              )}
+            </div>
 
-          <div className={cl.row}>
-            <span
-              style={{
-                backgroundColor: infoObject.email ? "green" : "black",
-              }}
-            >
-              E-Mail
-            </span>
-            <input
-              type="text"
-              placeholder={infoObject.email || "?"}
-              onChange={(e) => setInputEmail(e.target.value)}
-              value={inputEmail || ""}
-            ></input>
-            {inputEmail ? (
-              <button onClick={addEmail}>
-                <FaSave className={cl.saveIcon} />
-              </button>
-            ) : (
-              <button
-                onClick={deleteEmail}
+            <div className={cl.row}>
+              <span
                 style={{
-                  display: infoObject.email === "" ? "none" : "flex",
+                  backgroundColor: infoObject.email ? "green" : "black",
                 }}
               >
-                <FaTrashAlt className={cl.saveIcon} />
-              </button>
-            )}
+                E-Mail
+              </span>
+              <input
+                type="text"
+                placeholder={infoObject.email || "?"}
+                onChange={(e) => setInputEmail(e.target.value)}
+                value={inputEmail || ""}
+              ></input>
+              {inputEmail ? (
+                <button onClick={addEmail}>
+                  <FaSave className={cl.saveIcon} />
+                </button>
+              ) : (
+                <button
+                  onClick={deleteEmail}
+                  style={{
+                    display: infoObject.email === "" ? "none" : "flex",
+                  }}
+                >
+                  <FaTrashAlt className={cl.saveIcon} />
+                </button>
+              )}
+            </div>
           </div>
-        </div>
-        <div className={cl.submitBox}>
-          <button className={cl.bijwerken} onClick={bijwerkenHandler}>
-            Bijwerken <FaCloudDownloadAlt />
-          </button>
+          <div className={cl.submitBox}>
+            <button className={cl.bijwerken} onClick={bijwerkenHandler}>
+              Bijwerken <FaCloudDownloadAlt />
+            </button>
+          </div>
         </div>
       </div>
     </>
