@@ -31,16 +31,9 @@ const UserInfo = (props) => {
         setGegevens(false);
         return;
       }
-
-      // if (result === null) {
-      //   setGegevens(false);
-      //   return;
-      // } else {
-      //   setGegevens(true);
-      // }
     };
     fetchData();
-  }, [fetching, gegevens, props.user, setGegevens]);
+  }, [fetching, gegevens, props.user]);
 
   return (
     <div className={cl.modal}>
