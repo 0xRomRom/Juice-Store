@@ -1,14 +1,14 @@
 import cl from "./Nav.module.css";
 import logo from "../../img/moonjuice.png";
 import { FaSignInAlt, FaCartPlus } from "react-icons/fa";
-import React, { useState } from "react";
 
 const Nav = (props) => {
-  const [orderCount, setOrderCount] = useState(0);
-
   const logoutHandler = () => {
     props.setUser("");
-    setOrderCount((prevCount) => (prevCount = 0));
+  };
+
+  const openCart = () => {
+    props.cartOpen(true);
   };
 
   return (
@@ -17,9 +17,9 @@ const Nav = (props) => {
         <img src={logo} alt="Moon Juice Logo" className={cl.moonjuice} />
       </li>
       <li className={cl.contact}>Contact</li>
-      <li className={cl.cart}>
+      <li className={cl.cart} onClick={openCart}>
         <FaCartPlus />
-        {orderCount}
+        {props.count}
       </li>
       <li className={cl.logout} onClick={logoutHandler}>
         <FaSignInAlt />

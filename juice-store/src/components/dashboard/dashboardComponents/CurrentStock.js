@@ -1,9 +1,22 @@
 import cl from "./CurrentStock.module.css";
 import logo1 from "../../img/modalimg.png";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { FaPlusSquare, FaMinusSquare, FaCartPlus } from "react-icons/fa";
 
-const CurrentStock = () => {
+const CurrentStock = (props) => {
   const [counter1, setCounter1] = useState(0);
+  const nicotineRef1 = useRef(0);
+
+  const incrementCount1 = () => {
+    setCounter1((prevCount) => prevCount + 1);
+  };
+  const decrementCount1 = () => {
+    if (counter1 === 0) return;
+    setCounter1((prevCount) => prevCount - 1);
+  };
+  const submitOrder1 = () => {
+    props.counter((prevCount) => prevCount + counter1);
+  };
 
   return (
     <div className={cl.modal}>
@@ -25,7 +38,7 @@ const CurrentStock = () => {
                 <span htmlFor="nicotine" className={cl.label}>
                   Nicotine
                 </span>
-                <select id="nicotine" className={cl.select}>
+                <select id="nicotine" className={cl.select} ref={nicotineRef1}>
                   <option value="0">0 MG</option>
                   <option value="3">3 MG</option>
                   <option value="6">6 MG</option>
@@ -38,6 +51,13 @@ const CurrentStock = () => {
               <div className={cl.hoeveelheidBox}>
                 <span className={cl.label}>Hoeveelheid</span>
                 <span className={cl.count}>{counter1}</span>
+                <FaMinusSquare className={cl.icon} onClick={decrementCount1} />
+                <FaPlusSquare className={cl.icon} onClick={incrementCount1} />
+              </div>
+              <div className={cl.submitBox}>
+                <button className={cl.submitButton} onClick={submitOrder1}>
+                  Toevoegen <FaCartPlus className={cl.fa} />
+                </button>
               </div>
             </div>
           </div>
