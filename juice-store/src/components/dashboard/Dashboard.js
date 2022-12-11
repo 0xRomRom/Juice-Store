@@ -9,6 +9,7 @@ import ShoppingCart from "./dashboardComponents/ShoppingCart";
 const Dashboard = (props) => {
   const [orderCount, setOrderCount] = useState(0);
   const [cartOpen, setCartOpen] = useState(false);
+  const [currentOrders, setCurrentOrders] = useState([]);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -21,8 +22,14 @@ const Dashboard = (props) => {
     <div className={cl.dashboard}>
       <Nav setUser={props.setUser} count={orderCount} cartOpen={setCartOpen} />
       <UserInfo user={props.user} />
-      <CurrentStock counter={setOrderCount} />
-      {cartOpen ? <ShoppingCart closeCart={setCartOpen} /> : null}
+      <CurrentStock
+        counter={setOrderCount}
+        orders={setCurrentOrders}
+        ordered={currentOrders}
+      />
+      {cartOpen ? (
+        <ShoppingCart closeCart={setCartOpen} orders={currentOrders} />
+      ) : null}
     </div>
   );
 };

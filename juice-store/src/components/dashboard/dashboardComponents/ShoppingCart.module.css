@@ -41,3 +41,59 @@
 .closePosition:hover {
   color: white;
 }
+
+.winkelInner {
+  position: relative;
+  width: 90%;
+  left: 5%;
+  border: 1px solid rgb(178, 161, 161);
+  border-radius: 0.5rem;
+  top: 1rem;
+  height: 25rem;
+}
+
+.orderList {
+  position: relative;
+  width: 98%;
+  left: 1%;
+  top: 1%;
+  height: 90%;
+  border: 1px solid red;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.description {
+  position: relative;
+  width: 100%;
+  height: 2rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: white;
+  font-family: "Open Sans";
+  font-weight: 600;
+}
+
+.description span {
+  width: 33%;
+  text-align: center;
+}
+
+.listItem {
+  color: white;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  height: 2rem;
+}
+
+.listItem li {
+  width: 33%;
+  text-align: center;
+}
