@@ -3,7 +3,7 @@
   top: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.434);
+  background-color: rgba(0, 0, 0, 0.701);
 }
 
 .cart {
@@ -22,6 +22,9 @@
   font-family: "Open Sans";
   display: block;
   text-align: center;
+  position: relative;
+  top: -1rem;
+  user-select: none;
 }
 
 .closePosition {
@@ -46,7 +49,7 @@
   position: relative;
   width: 90%;
   left: 5%;
-  border: 1px solid rgb(178, 161, 161);
+  /* border: 1px solid rgb(178, 161, 161); */
   border-radius: 0.5rem;
   top: 1rem;
   height: 25rem;
@@ -63,6 +66,10 @@
   align-items: center;
   flex-direction: column;
   gap: 0.5rem;
+  /* border: 1px solid white; */
+  overflow-y: auto;
+  overflow-x: hidden;
+  user-select: none;
 }
 .description {
   position: relative;
@@ -74,6 +81,7 @@
   color: white;
   font-family: "Open Sans";
   font-weight: 600;
+  user-select: none;
 }
 
 .description span {
@@ -89,7 +97,7 @@
   align-items: center;
   gap: 1rem;
   width: 100%;
-  height: 2rem;
+  min-height: 2rem;
   background: linear-gradient(180deg, rgb(32, 32, 229), rgb(148, 34, 235));
   border-radius: 0.4rem;
 }
@@ -102,14 +110,54 @@
 
 .end {
   position: absolute;
-  left: 28rem;
+  left: 32.5rem;
   font-size: 1.25rem;
   margin-top: 0.3rem;
   color: rgb(191, 185, 185);
   transition: all 0.2s ease-in-out;
   cursor: pointer;
+  display: inline;
+  width: 2rem !important;
 }
 
 .end:hover {
   color: white;
+}
+
+.totalBox {
+  position: relative;
+  width: 8rem;
+  height: 2.5rem;
+  font-size: 1.3rem;
+  font-family: "Open Sans";
+  color: white;
+  top: 2.9rem;
+  left: 0.3rem;
+  user-select: none;
+}
+
+.submitBox {
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.submit {
+  font-family: "Open Sans";
+  padding: 0.2rem 0.4rem;
+  border: 2px solid blue;
+  background-color: transparent;
+  color: white;
+  font-size: 1.5rem;
+  border-radius: 0.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.submit:hover {
+  background-color: blue;
 }

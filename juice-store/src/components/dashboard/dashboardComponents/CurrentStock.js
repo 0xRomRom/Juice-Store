@@ -15,6 +15,8 @@ const CurrentStock = (props) => {
     setCounter1((prevCount) => prevCount - 1);
   };
   const submitOrder1 = () => {
+    if (counter1 === 0) return;
+
     const values = {
       naam: "Monkey Juice",
       nicotine: nicotine1,
@@ -69,6 +71,10 @@ const CurrentStock = (props) => {
                 <FaPlusSquare className={cl.icon} onClick={incrementCount1} />
               </div>
               <div className={cl.submitBox}>
+                <div className={cl.priceBox}>
+                  <span>€25</span>
+                  <span>100ml</span>
+                </div>
                 <button className={cl.submitButton} onClick={submitOrder1}>
                   Toevoegen <FaCartPlus className={cl.fa} />
                 </button>

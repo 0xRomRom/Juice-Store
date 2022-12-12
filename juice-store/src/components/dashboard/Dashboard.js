@@ -33,6 +33,7 @@ const Dashboard = (props) => {
           orders={currentOrders}
           setOrders={setCurrentOrders}
           orderCount={setOrderCount}
+          totalCount={orderCount}
         />
       ) : null}
     </div>

@@ -1,7 +1,10 @@
 import cl from "./ShoppingCart.module.css";
-import { FaTimesCircle, FaTrash } from "react-icons/fa";
+import { FaTimesCircle, FaTrash, FaTruck } from "react-icons/fa";
+import React, { useState } from "react";
 
 const ShoppingCart = (props) => {
+  const [totalPrice, setTotalPrice] = useState(0);
+
   const closeCart = () => {
     props.closeCart(false);
     console.log(props.orders);
@@ -10,6 +13,10 @@ const ShoppingCart = (props) => {
   const deleteHandler = (target) => {
     props.setOrders(props.orders.filter((product, i) => i !== target));
     props.orderCount((prev) => prev - props.orders[target].hoeveelheid);
+  };
+
+  const submitOrder = () => {
+    if (props.totalCount === 0) return;
   };
 
   return (
@@ -38,6 +45,12 @@ const ShoppingCart = (props) => {
                 </ul>
               );
             })}
+          </div>
+          <div className={cl.totalBox}>Totaal €{props.totalCount * 25}</div>
+          <div className={cl.submitBox}>
+            <button className={cl.submit} onClick={submitOrder}>
+              Bestellen <FaTruck />
+            </button>
           </div>
         </div>
       </div>
