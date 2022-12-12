@@ -46,6 +46,22 @@ const ShoppingCart = (props) => {
       return;
     }
     setNoPhone(false);
+
+    const finalOrder = {
+      order: props.orders,
+      gegevens: props.userInfo,
+    };
+
+    fetch(
+      `https://moon-juice-default-rtdb.europe-west1.firebasedatabase.app/orders.json`,
+      {
+        method: "POST",
+        body: JSON.stringify(finalOrder),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
   };
 
   return (

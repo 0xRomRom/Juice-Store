@@ -26,7 +26,7 @@ const Dashboard = (props) => {
       for (const res of Object.entries(result)) {
         totalLength += res[1].length;
       }
-      if (totalLength !== 0) {
+      if (totalLength === 0) {
         setUserInfo({
           naam: "",
           provincie: "",
@@ -39,13 +39,13 @@ const Dashboard = (props) => {
         });
         return;
       }
-      if (totalLength === 0) {
+      if (totalLength !== 0) {
         setUserInfo(result);
         return;
       }
     };
     fetchData();
-  }, [navigate, props.user]);
+  }, [navigate, props.user, userInfo]);
 
   return (
     <div className={cl.dashboard}>
