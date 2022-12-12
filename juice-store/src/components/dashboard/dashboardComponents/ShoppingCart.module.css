@@ -293,3 +293,60 @@
   color: white;
   font-family: "Open Sans";
 }
+
+.verzendenBox {
+  position: relative;
+  width: 80%;
+  left: 10%;
+  height: 6rem;
+  /* border: 1px solid white; */
+}
+
+.payWithBox {
+  position: relative;
+  width: 100%;
+  height: 6rem;
+  border: 1px solid red;
+  text-align: center;
+  color: white;
+  font-family: "Open Sans";
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.payButtons {
+  position: relative;
+  width: 100%;
+  top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  /* border: 1px solid white; */
+}
+
+.payBtns {
+  width: 10rem;
+  height: 3rem;
+  font-family: "Open Sans";
+  font-weight: 600;
+  border: 1px solid blue;
+  background-color: transparent;
+  color: white;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+  user-select: none;
+}
+
+.cryptoPay {
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  height: 20rem;
+  top: 10rem;
+  z-index: 10;
+  border: 1px solid yellow;
+  color: white;
+  font-family: "Open Sans";
+}

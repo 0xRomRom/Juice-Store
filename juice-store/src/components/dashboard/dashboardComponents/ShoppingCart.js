@@ -13,8 +13,9 @@ import React, { useState } from "react";
 const ShoppingCart = (props) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [selectDelivery, setSelectDelivery] = useState(false);
-  const [orderType, setOrderType] = useState("");
+  const [orderType, setOrderType] = useState("verzenden");
   const [noPhone, setNoPhone] = useState(false);
+  const [payBy, setPayBy] = useState("");
 
   const closeCart = () => {
     props.closeCart(false);
@@ -79,7 +80,7 @@ const ShoppingCart = (props) => {
         <div className={cl.closePosition}>
           <FaTimesCircle className={cl.close} onClick={closeCart} />
         </div>
-        {!selectDelivery && (
+        {selectDelivery && (
           <>
             <h1 className={cl.hero}>Winkelwagen</h1>
             <div className={cl.winkelInner}>
@@ -129,7 +130,42 @@ const ShoppingCart = (props) => {
             </div>
           </div>
         )}
-        {orderType === "verzenden" && <div></div>}
+        {orderType === "verzenden" && (
+          <div className={cl.verzendenBox}>
+            <div className={cl.payWithBox}>
+              <span>Betaal via</span>
+              <div className={cl.payButtons}>
+                <button
+                  className={cl.payBtns}
+                  onClick={() => setPayBy("crypto")}
+                  style={{
+                    backgroundColor:
+                      payBy === "crypto" && payBy !== "" ? "blue" : "black",
+                  }}
+                >
+                  Crypto
+                </button>
+                <button
+                  className={cl.payBtns}
+                  onClick={() => setPayBy("overschrijving")}
+                  style={{
+                    backgroundColor:
+                      payBy === "overschrijving" && payBy !== ""
+                        ? "blue"
+                        : "black",
+                  }}
+                >
+                  Overschrijving
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+        {payBy === "crypto" && (
+          <div className={cl.cryptoPay}>
+            <span>Stap 1: Kies soort crypto</span>
+          </div>
+        )}
         {orderType === "ophalen" && (
           <div className={cl.ophalenBox}>
             <FaRegArrowAltCircleLeft
