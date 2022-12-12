@@ -350,6 +350,22 @@
   font-family: "Open Sans";
 }
 
+.overschrijvingPay {
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  height: 20rem;
+  top: 10rem;
+  z-index: 10;
+  color: white;
+  font-family: "Open Sans";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 1.2rem;
+}
+
 .row1 {
   position: relative;
   width: 100%;
@@ -441,6 +457,16 @@
   display: flex;
   justify-content: center;
   margin-top: 2rem;
+}
+
+.submitBox3 {
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  position: relative;
+  top: 15rem;
+  z-index: 10;
 }
 
 .cryptoBack {

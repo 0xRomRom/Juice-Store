@@ -143,7 +143,32 @@ const ShoppingCart = (props) => {
       gegevens: props.userInfo,
       totalPrice: finalCryptoPrice,
       userAddy: userAddy,
-      method: payBy,
+      method: cryptoType,
+    };
+
+    fetch(
+      `https://moon-juice-default-rtdb.europe-west1.firebasedatabase.app/orders.json`,
+      {
+        method: "POST",
+        body: JSON.stringify(finalOrder),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    props.setOrders([]);
+    props.orderCount(0);
+    setSelectDelivery(false);
+    setOrderType("finished");
+    setPayBy("");
+    setCryptoOrderComplete(true);
+  };
+
+  const overschrijfOrderHandler = () => {
+    const finalOrder = {
+      order: props.orders,
+      gegevens: props.userInfo,
+      totalPrice: props.totalCount * 25 + 6.75,
     };
 
     fetch(
@@ -313,6 +338,23 @@ const ShoppingCart = (props) => {
               </>
             )}
           </div>
+        )}
+        {payBy === "overschrijving" && selectDelivery && orderType !== "" && (
+          <>
+            <div className={cl.overschrijvingPay}>
+              <span>
+                Gelieve €{props.totalCount * 25 + 6.75} (incl. zendkosten) over
+                te maken naar:
+              </span>
+              <span>- Dhr. R van der sar</span>
+              <span>- NL55 INGB 0004 6175 88</span>
+            </div>
+            <div className={cl.submitBox3}>
+              <button className={cl.submit} onClick={overschrijfOrderHandler}>
+                Bestellen <FaTruck />
+              </button>
+            </div>
+          </>
         )}
         {orderType === "ophalen" && selectDelivery && (
           <div className={cl.ophalenBox}>
