@@ -28,7 +28,8 @@
 }
 
 .closePosition {
-  width: 100%;
+  width: 3rem;
+  left: 91%;
   height: 3rem;
   position: relative;
   display: flex;

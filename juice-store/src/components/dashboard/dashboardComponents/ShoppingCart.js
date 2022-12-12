@@ -24,7 +24,6 @@ const ShoppingCart = (props) => {
   const [cryptoOrderComplete, setCryptoOrderComplete] = useState(false);
 
   useEffect(() => {
-    console.log(props.userInfo);
     const userdata = Object.entries(props.userInfo);
     let count = 0;
     userdata.map((item) => {
@@ -64,11 +63,11 @@ const ShoppingCart = (props) => {
       setReceiveWallet("0xee207af9EBA4d77d832e3139464848ce84a620d9");
     }
     if (cryptoType === "usdc") {
-      setFinalCryptoPrice((props.totalCount * 25 * 1.02 + 6.75).toFixed(4));
+      setFinalCryptoPrice((props.totalCount * 25 * 1.01 + 6.75).toFixed(4));
       setReceiveWallet("GU5qcerL6UbiMbgNCGp7E79hvk1PCdU1yqy7U5dWj2Nw");
     }
     if (cryptoType === "usdt") {
-      setFinalCryptoPrice((props.totalCount * 25 * 1.02 + 6.75).toFixed(4));
+      setFinalCryptoPrice((props.totalCount * 25 * 1.01 + 6.75).toFixed(4));
       setReceiveWallet("GU5qcerL6UbiMbgNCGp7E79hvk1PCdU1yqy7U5dWj2Nw");
     }
   }, [cryptoType, validUser]);

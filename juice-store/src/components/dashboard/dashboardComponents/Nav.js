@@ -11,12 +11,18 @@ const Nav = (props) => {
     props.cartOpen(true);
   };
 
+  const openContact = () => {
+    props.contactOpen(true);
+  };
+
   return (
     <ul className={cl.nav}>
       <li>
         <img src={logo} alt="Moon Juice Logo" className={cl.moonjuice} />
       </li>
-      <li className={cl.contact}>Contact</li>
+      <li className={cl.contact} onClick={openContact}>
+        Contact
+      </li>
       <li className={cl.cart} onClick={openCart}>
         <FaCartPlus />
         {props.count}

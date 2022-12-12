@@ -5,10 +5,12 @@ import Nav from "./dashboardComponents/Nav";
 import UserInfo from "./dashboardComponents/UserInfo";
 import CurrentStock from "./dashboardComponents/CurrentStock";
 import ShoppingCart from "./dashboardComponents/ShoppingCart";
+import ContactModal from "./dashboardComponents/ContactModal";
 
 const Dashboard = (props) => {
   const [orderCount, setOrderCount] = useState(0);
   const [cartOpen, setCartOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
   const [currentOrders, setCurrentOrders] = useState([]);
   const [userInfo, setUserInfo] = useState({});
 
@@ -49,7 +51,12 @@ const Dashboard = (props) => {
 
   return (
     <div className={cl.dashboard}>
-      <Nav setUser={props.setUser} count={orderCount} cartOpen={setCartOpen} />
+      <Nav
+        setUser={props.setUser}
+        count={orderCount}
+        cartOpen={setCartOpen}
+        contactOpen={setContactOpen}
+      />
       <UserInfo user={props.user} userInfo={setUserInfo} />
       <CurrentStock
         counter={setOrderCount}
@@ -66,6 +73,7 @@ const Dashboard = (props) => {
           userInfo={userInfo}
         />
       ) : null}
+      {contactOpen ? <ContactModal closeContact={setContactOpen} /> : null}
     </div>
   );
 };
