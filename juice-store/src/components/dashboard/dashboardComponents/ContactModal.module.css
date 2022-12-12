@@ -32,6 +32,7 @@
 
 .hero {
   margin-top: 1.5rem;
+  color: rgb(105, 255, 254);
 }
 
 .closePosition {
@@ -43,6 +44,83 @@
   color: rgb(199, 193, 193);
   transition: all 0.2s ease-in-out;
 }
-:hover .closePosition:hover {
+.closePosition:hover {
   color: white;
+}
+
+.textBox {
+  position: relative;
+  top: 3rem;
+}
+
+.message {
+  width: 20rem;
+  height: 20rem;
+  border: 2px solid blue;
+  background-color: transparent;
+  outline: 0;
+  border-radius: 0.4rem;
+  background-color: rgb(14, 13, 12);
+  color: rgb(105, 255, 254);
+  font-family: "Open Sans";
+  resize: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.emailBox {
+  margin-top: 1rem;
+  font-family: "Open Sans";
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  font-weight: 600;
+  color: rgb(105, 255, 254);
+}
+
+.emailInput {
+  border: 2px solid blue;
+  background-color: transparent;
+  outline: 0;
+  color: rgb(105, 255, 254);
+  padding-left: 0.5rem;
+}
+
+.submitPosition {
+  width: 100%;
+  position: relative;
+  top: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submit {
+  font-family: "Open Sans";
+  padding: 0.2rem 0.4rem;
+  border: 2px solid blue;
+  background-color: transparent;
+  color: rgb(105, 255, 254);
+  font-size: 1.5rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.submit:hover {
+  background-color: blue;
+  color: white;
+}
+
+.received {
+  color: rgb(105, 255, 254);
+  font-size: 2rem;
+  position: relative;
+  top: 17rem;
+  font-family: "Open Sans";
+  user-select: none;
 }
