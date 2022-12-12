@@ -65,7 +65,7 @@ const CurrentStock = (props) => {
                 </select>
               </div>
               <div className={cl.hoeveelheidBox}>
-                <span className={cl.label}>Hoeveelheid</span>
+                <span className={cl.label}>Aantal</span>
                 <span className={cl.count}>{counter1}</span>
                 <FaMinusSquare className={cl.icon} onClick={decrementCount1} />
                 <FaPlusSquare className={cl.icon} onClick={incrementCount1} />
