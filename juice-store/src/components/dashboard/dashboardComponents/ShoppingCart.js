@@ -225,6 +225,13 @@ const ShoppingCart = (props) => {
         )}
         {orderType === "verzenden" && selectDelivery && validUser && (
           <div className={cl.verzendenBox}>
+            <FaRegArrowAltCircleLeft
+              className={cl.cryptoBack}
+              onClick={() => {
+                setOrderType("");
+                setPayBy("");
+              }}
+            />
             <div className={cl.payWithBox}>
               <span>Betaal via</span>
               <div className={cl.payButtons}>
@@ -255,7 +262,7 @@ const ShoppingCart = (props) => {
           </div>
         )}
 
-        {payBy === "crypto" && selectDelivery && (
+        {payBy === "crypto" && selectDelivery && orderType !== "" && (
           <div className={cl.cryptoPay}>
             <div className={cl.row1}>
               <span>Stap 1: Kies soort crypto</span>
@@ -311,7 +318,10 @@ const ShoppingCart = (props) => {
           <div className={cl.ophalenBox}>
             <FaRegArrowAltCircleLeft
               className={cl.back2}
-              onClick={() => setOrderType("")}
+              onClick={() => {
+                setOrderType("");
+                setPayBy("");
+              }}
             />
             <div className={cl.orderList2}>
               <div className={cl.description}>
