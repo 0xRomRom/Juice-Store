@@ -39,6 +39,7 @@
   font-size: 1.5rem;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
+  /* background-color: gray; */
 }
 
 .closePosition:hover {
@@ -183,11 +184,16 @@
   border-radius: 0.4rem;
   font-family: "Open Sans";
   font-weight: 700;
+  font-size: 1.2rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   background-color: black;
   border: none;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
 .cta:hover {
@@ -202,4 +208,70 @@
   border-radius: 0.4rem;
   padding-top: 0.1rem;
   padding-left: 0.15rem;
+}
+
+.ophalenBox {
+  position: relative;
+  width: 80%;
+  left: 10%;
+  height: 35rem;
+  /* border: 1px solid white; */
+}
+
+.orderList2 {
+  position: relative;
+  width: 98%;
+  left: 1%;
+  top: 1%;
+  height: 25rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  /* border: 1px solid white; */
+  overflow-y: auto;
+  overflow-x: hidden;
+  user-select: none;
+}
+
+.pickupOrderBox {
+  position: relative;
+  width: 100%;
+  /* background-color: green; */
+  top: 3.5rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.back {
+  color: rgb(169, 160, 160);
+  font-size: 1.5rem;
+  position: absolute;
+  top: -7rem;
+  left: -3rem;
+  transition: all 0.2s ease-in-out;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.back:hover {
+  color: white;
+}
+
+.back2 {
+  color: rgb(169, 160, 160);
+  font-size: 1.5rem;
+  position: absolute;
+  top: -2rem;
+  left: -3rem;
+  transition: all 0.2s ease-in-out;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.back2:hover {
+  color: white;
 }

@@ -1,5 +1,13 @@
 import cl from "./ShoppingCart.module.css";
-import { FaTimesCircle, FaTrash, FaTruck } from "react-icons/fa";
+import {
+  FaTimesCircle,
+  FaTrash,
+  FaTruck,
+  FaHandshake,
+  FaPlane,
+  FaCheck,
+  FaRegArrowAltCircleLeft,
+} from "react-icons/fa";
 import React, { useState } from "react";
 
 const ShoppingCart = (props) => {
@@ -9,7 +17,7 @@ const ShoppingCart = (props) => {
 
   const closeCart = () => {
     props.closeCart(false);
-    console.log(props.orders);
+    setOrderType("");
   };
 
   const deleteHandler = (target) => {
@@ -23,11 +31,11 @@ const ShoppingCart = (props) => {
   };
 
   const selectShipping = () => {
-    setOrderType("Verzenden");
+    setOrderType("verzenden");
   };
 
   const selectPickUp = () => {
-    setOrderType("Ophalen");
+    setOrderType("ophalen");
   };
 
   return (
@@ -62,7 +70,7 @@ const ShoppingCart = (props) => {
               <div className={cl.totalBox}>Totaal €{props.totalCount * 25}</div>
               <div className={cl.submitBox}>
                 <button className={cl.submit} onClick={submitOrder}>
-                  Bestellen <FaTruck />
+                  Bevestigen <FaCheck />
                 </button>
               </div>
             </div>
@@ -70,15 +78,55 @@ const ShoppingCart = (props) => {
         )}
         {orderType === "" && selectDelivery && (
           <div className={cl.selectionBox}>
+            <FaRegArrowAltCircleLeft
+              className={cl.back}
+              onClick={() => setSelectDelivery(false)}
+            />
             <div className={cl.btnBorder}>
               <button className={cl.cta} onClick={selectShipping}>
-                Verzenden
+                Verzenden <FaPlane />
               </button>
             </div>
             <div className={cl.btnBorder}>
               <button className={cl.cta} onClick={selectPickUp}>
-                Ophalen
+                Ophalen <FaHandshake />
               </button>
+            </div>
+          </div>
+        )}
+        {orderType === "verzenden" && <div></div>}
+        {orderType === "ophalen" && (
+          <div className={cl.ophalenBox}>
+            <FaRegArrowAltCircleLeft
+              className={cl.back2}
+              onClick={() => setOrderType("")}
+            />
+            <div className={cl.orderList2}>
+              <div className={cl.description}>
+                <span>Flavor</span>
+                <span>Nicotine</span>
+                <span>Aantal</span>
+              </div>
+              {props.orders.map((item, i) => {
+                return (
+                  <ul key={i} className={cl.listItem}>
+                    <li>{item.naam}</li>
+                    <li>{item.nicotine} MG</li>
+                    <li>{item.hoeveelheid}x</li>
+                    <li className={cl.end} onClick={() => deleteHandler(i)}>
+                      <FaTrash />
+                    </li>
+                  </ul>
+                );
+              })}
+              <div className={cl.totalBox}>Totaal €{props.totalCount * 25}</div>
+            </div>
+            <div className={cl.pickupOrderBox}>
+              <div className={cl.submitBox}>
+                <button className={cl.submit}>
+                  Bestellen <FaTruck />
+                </button>
+              </div>
             </div>
           </div>
         )}
