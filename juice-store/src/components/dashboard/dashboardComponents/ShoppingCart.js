@@ -20,6 +20,8 @@ const ShoppingCart = (props) => {
   const [validUser, setValidUser] = useState(true);
   const [finalCryptoPrice, setFinalCryptoPrice] = useState(0);
   const [receiveWallet, setReceiveWallet] = useState("");
+  const [userAddy, setUserAddy] = useState("");
+  const [cryptoOrderComplete, setCryptoOrderComplete] = useState(false);
 
   useEffect(() => {
     console.log(props.userInfo);
@@ -41,26 +43,33 @@ const ShoppingCart = (props) => {
       setFinalCryptoPrice(
         (((props.totalCount * 25) / currentPrices.solana.eur) * 1.01).toFixed(3)
       );
+      setReceiveWallet("GU5qcerL6UbiMbgNCGp7E79hvk1PCdU1yqy7U5dWj2Nw");
     }
     if (cryptoType === "bitcoin") {
       setFinalCryptoPrice(
-        (((props.totalCount * 25) / currentPrices.bitcoin.eur) * 1.01).toFixed(
-          8
-        )
+        (
+          ((props.totalCount * 25 + 6.75) / currentPrices.bitcoin.eur) *
+          1.01
+        ).toFixed(8)
       );
+      setReceiveWallet("1MHVEKUXPEj5YafF6Lx13u9jgcAvLBuwnQ");
     }
     if (cryptoType === "ethereum") {
       setFinalCryptoPrice(
-        (((props.totalCount * 25) / currentPrices.ethereum.eur) * 1.01).toFixed(
-          4
-        )
+        (
+          ((props.totalCount * 25 + 6.75) / currentPrices.ethereum.eur) *
+          1.01
+        ).toFixed(4)
       );
+      setReceiveWallet("0xee207af9EBA4d77d832e3139464848ce84a620d9");
     }
     if (cryptoType === "usdc") {
-      setFinalCryptoPrice((props.totalCount * 25 * 1.02).toFixed(4));
+      setFinalCryptoPrice((props.totalCount * 25 * 1.02 + 6.75).toFixed(4));
+      setReceiveWallet("GU5qcerL6UbiMbgNCGp7E79hvk1PCdU1yqy7U5dWj2Nw");
     }
     if (cryptoType === "usdt") {
-      setFinalCryptoPrice((props.totalCount * 25 * 1.02).toFixed(4));
+      setFinalCryptoPrice((props.totalCount * 25 * 1.02 + 6.75).toFixed(4));
+      setReceiveWallet("GU5qcerL6UbiMbgNCGp7E79hvk1PCdU1yqy7U5dWj2Nw");
     }
   }, [cryptoType, validUser]);
 
@@ -124,6 +133,35 @@ const ShoppingCart = (props) => {
     props.setOrders([]);
     props.orderCount(0);
     setOrderType("finished");
+    setCryptoOrderComplete(true);
+    setCryptoType("leeg");
+  };
+
+  const cryptoOrderHandler = () => {
+    const finalOrder = {
+      order: props.orders,
+      gegevens: props.userInfo,
+      totalPrice: finalCryptoPrice,
+      userAddy: userAddy,
+      method: payBy,
+    };
+
+    fetch(
+      `https://moon-juice-default-rtdb.europe-west1.firebasedatabase.app/orders.json`,
+      {
+        method: "POST",
+        body: JSON.stringify(finalOrder),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    props.setOrders([]);
+    props.orderCount(0);
+    setSelectDelivery(false);
+    setOrderType("finished");
+    setPayBy("");
+    setCryptoOrderComplete(true);
   };
 
   return (
@@ -132,7 +170,7 @@ const ShoppingCart = (props) => {
         <div className={cl.closePosition}>
           <FaTimesCircle className={cl.close} onClick={closeCart} />
         </div>
-        {!selectDelivery && (
+        {!selectDelivery && !cryptoOrderComplete && (
           <>
             <h1 className={cl.hero}>Winkelwagen</h1>
             <div className={cl.winkelInner}>
@@ -238,13 +276,34 @@ const ShoppingCart = (props) => {
             </div>
             <hr className={cl.hrs}></hr>
             {cryptoType !== "leeg" && (
-              <div className={cl.row1}>
-                Stap 2: Maak {finalCryptoPrice}
-                {" " +
-                  cryptoType.charAt(0).toUpperCase() +
-                  cryptoType.slice(1)}{" "}
-                over naar
-              </div>
+              <>
+                <div className={cl.row2}>
+                  Stap 2: Maak {finalCryptoPrice}
+                  {" " +
+                    cryptoType.charAt(0).toUpperCase() +
+                    cryptoType.slice(1)}{" "}
+                  over naar {receiveWallet}
+                  <span className={cl.verzendkosten}>
+                    Incl. €6.75,- verzend kosten{" "}
+                  </span>
+                </div>
+                <hr className={cl.hrs}></hr>
+                <div className={cl.row1}>
+                  <span>Stap 3: Verstuurd vanaf wallet: </span>
+                  <input
+                    type="text"
+                    className={cl.addyInput}
+                    placeholder="0x43123"
+                    onChange={(e) => setUserAddy(e.target.value)}
+                  ></input>
+                </div>
+                <hr className={cl.hrs}></hr>
+                <div className={cl.submitBox2}>
+                  <button className={cl.submit} onClick={cryptoOrderHandler}>
+                    Bestellen <FaTruck />
+                  </button>
+                </div>
+              </>
             )}
           </div>
         )}
@@ -290,7 +349,7 @@ const ShoppingCart = (props) => {
             </div>
           </div>
         )}
-        {orderType === "finished" && (
+        {orderType === "finished" && cryptoOrderComplete && (
           <div className={cl.finishedBox}>
             <h2>Uw bestelling wordt bereid!</h2>
           </div>

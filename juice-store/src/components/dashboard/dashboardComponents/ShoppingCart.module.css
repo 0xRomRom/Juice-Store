@@ -362,6 +362,17 @@
   gap: 1rem;
 }
 
+.row2 {
+  position: relative;
+  width: 100%;
+  height: 5rem;
+  /* background-color: green; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
 .cryptoSelect {
   border: none;
   background-color: transparent;
@@ -407,4 +418,28 @@
   justify-content: center;
   align-items: center;
   font-size: 2rem;
+}
+
+.addyInput {
+  position: relative;
+  outline: 0;
+  border: 2px solid blue;
+  background-color: transparent;
+  color: white;
+  padding-left: 0.5rem;
+}
+
+.verzendkosten {
+  color: gray;
+  position: absolute;
+  left: 28rem;
+  width: 4rem;
+  font-size: 0.8rem;
+}
+
+.submitBox2 {
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
 }
