@@ -22,20 +22,21 @@ const ShoppingCart = (props) => {
   const [receiveWallet, setReceiveWallet] = useState("");
 
   useEffect(() => {
-    let totalLength = 0;
-    for (const res of Object.entries(props.userInfo)) {
-      totalLength += res[1].length;
-    }
-    if (totalLength < 5) {
-      setValidUser(false);
-      return;
-    }
-    if (totalLength > 5) {
-      setValidUser(true);
-      return;
-    }
-    console.log(totalLength);
-
+    console.log(props.userInfo);
+    const userdata = Object.entries(props.userInfo);
+    let count = 0;
+    userdata.map((item) => {
+      if (item[1] !== "") {
+        count++;
+      }
+      if (count > 5) {
+        setValidUser(true);
+      }
+      if (count < 5) {
+        setValidUser(false);
+      }
+    });
+    console.log(userdata);
     if (cryptoType === "solana") {
       setFinalCryptoPrice(
         (((props.totalCount * 25) / currentPrices.solana.eur) * 1.01).toFixed(3)
@@ -61,7 +62,7 @@ const ShoppingCart = (props) => {
     if (cryptoType === "usdt") {
       setFinalCryptoPrice((props.totalCount * 25 * 1.02).toFixed(4));
     }
-  }, [cryptoType, validUser, props.userInfo]);
+  }, [cryptoType, validUser]);
 
   const closeCart = () => {
     props.closeCart(false);
