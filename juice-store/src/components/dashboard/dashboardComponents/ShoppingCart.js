@@ -16,6 +16,7 @@ const ShoppingCart = (props) => {
   const [orderType, setOrderType] = useState("verzenden");
   const [noPhone, setNoPhone] = useState(false);
   const [payBy, setPayBy] = useState("");
+  const [cryptoType, setCryptoType] = useState("leeg");
 
   const closeCart = () => {
     props.closeCart(false);
@@ -163,7 +164,33 @@ const ShoppingCart = (props) => {
         )}
         {payBy === "crypto" && (
           <div className={cl.cryptoPay}>
-            <span>Stap 1: Kies soort crypto</span>
+            <div className={cl.row1}>
+              <span>Stap 1: Kies soort crypto</span>
+              <select
+                id="crypto"
+                className={cl.cryptoSelect}
+                onChange={(e) => {
+                  setCryptoType(e.target.value);
+                }}
+              >
+                <option value="leeg">Maak keuze</option>
+                <option value="bitcoin">Bitcoin</option>
+                <option value="ethereum">Ethereum</option>
+                <option value="solana">Solana</option>
+                <option value="usdc">USDC</option>
+                <option value="usdt">USDT</option>
+              </select>
+            </div>
+            <hr className={cl.hrs}></hr>
+            {cryptoType !== "leeg" && (
+              <div className={cl.row1}>
+                Stap 2: Maak 34
+                {" " +
+                  cryptoType.charAt(0).toUpperCase() +
+                  cryptoType.slice(1)}{" "}
+                over naar
+              </div>
+            )}
           </div>
         )}
         {orderType === "ophalen" && (
