@@ -14,6 +14,7 @@ const ShoppingCart = (props) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [selectDelivery, setSelectDelivery] = useState(false);
   const [orderType, setOrderType] = useState("");
+  const [noPhone, setNoPhone] = useState(false);
 
   const closeCart = () => {
     props.closeCart(false);
@@ -36,6 +37,15 @@ const ShoppingCart = (props) => {
 
   const selectPickUp = () => {
     setOrderType("ophalen");
+  };
+
+  const pickUpOrderHandler = () => {
+    console.log(props.userInfo);
+    if (props.userInfo.telefoonnummer === "") {
+      setNoPhone(true);
+      return;
+    }
+    setNoPhone(false);
   };
 
   return (
@@ -123,7 +133,14 @@ const ShoppingCart = (props) => {
             </div>
             <div className={cl.pickupOrderBox}>
               <div className={cl.submitBox}>
-                <button className={cl.submit}>
+                {noPhone && (
+                  <span className={cl.phoneWarning}>
+                    Voeg een telefoonnummer toe
+                  </span>
+                )}
+              </div>
+              <div className={cl.submitBox}>
+                <button className={cl.submit} onClick={pickUpOrderHandler}>
                   Bestellen <FaTruck />
                 </button>
               </div>

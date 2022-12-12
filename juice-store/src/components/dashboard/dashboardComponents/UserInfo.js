@@ -55,6 +55,7 @@ const UserInfo = (props) => {
           closed={setGegevensModal}
           user={props.user}
           gegevens={setGegevens}
+          userInfo={props.userInfo}
         />
       ) : null}
     </div>

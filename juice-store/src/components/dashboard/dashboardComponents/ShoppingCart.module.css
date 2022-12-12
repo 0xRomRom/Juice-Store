@@ -35,7 +35,7 @@
   justify-content: flex-end;
   align-items: center;
   padding-right: 1rem;
-  color: rgb(210, 199, 199);
+  color: rgb(169, 160, 160);
   font-size: 1.5rem;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
@@ -244,6 +244,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .back {
@@ -274,4 +276,9 @@
 
 .back2:hover {
   color: white;
+}
+
+.phoneWarning {
+  font-family: "Open Sans";
+  color: red;
 }

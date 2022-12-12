@@ -47,6 +47,7 @@ const GegevensModal = (props) => {
         });
       } else {
         setInfoObject(result);
+        props.userInfo(result);
       }
     };
     fetchData();
@@ -74,6 +75,7 @@ const GegevensModal = (props) => {
     }
     if (totalLength !== 0) {
       props.gegevens(true);
+      props.userInfo(infoObject);
       return;
     }
   };
