@@ -396,3 +396,15 @@
   left: 2.5%;
   position: relative;
 }
+
+.geenGegevens {
+  font-family: "Open Sans";
+  color: red;
+  height: 10rem;
+  position: relative;
+  top: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}

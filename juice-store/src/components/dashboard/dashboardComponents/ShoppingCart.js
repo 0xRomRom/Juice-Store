@@ -8,15 +8,60 @@ import {
   FaCheck,
   FaRegArrowAltCircleLeft,
 } from "react-icons/fa";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const ShoppingCart = (props) => {
-  const [totalPrice, setTotalPrice] = useState(0);
   const [selectDelivery, setSelectDelivery] = useState(false);
-  const [orderType, setOrderType] = useState("verzenden");
+  const [orderType, setOrderType] = useState("");
   const [noPhone, setNoPhone] = useState(false);
   const [payBy, setPayBy] = useState("");
   const [cryptoType, setCryptoType] = useState("leeg");
+  const [currentPrices, setCurrentPrices] = useState({});
+  const [validUser, setValidUser] = useState(true);
+  const [finalCryptoPrice, setFinalCryptoPrice] = useState(0);
+  const [receiveWallet, setReceiveWallet] = useState("");
+
+  useEffect(() => {
+    let totalLength = 0;
+    for (const res of Object.entries(props.userInfo)) {
+      totalLength += res[1].length;
+    }
+    if (totalLength < 5) {
+      setValidUser(false);
+      return;
+    }
+    if (totalLength > 5) {
+      setValidUser(true);
+      return;
+    }
+    console.log(totalLength);
+
+    if (cryptoType === "solana") {
+      setFinalCryptoPrice(
+        (((props.totalCount * 25) / currentPrices.solana.eur) * 1.01).toFixed(3)
+      );
+    }
+    if (cryptoType === "bitcoin") {
+      setFinalCryptoPrice(
+        (((props.totalCount * 25) / currentPrices.bitcoin.eur) * 1.01).toFixed(
+          8
+        )
+      );
+    }
+    if (cryptoType === "ethereum") {
+      setFinalCryptoPrice(
+        (((props.totalCount * 25) / currentPrices.ethereum.eur) * 1.01).toFixed(
+          4
+        )
+      );
+    }
+    if (cryptoType === "usdc") {
+      setFinalCryptoPrice((props.totalCount * 25 * 1.02).toFixed(4));
+    }
+    if (cryptoType === "usdt") {
+      setFinalCryptoPrice((props.totalCount * 25 * 1.02).toFixed(4));
+    }
+  }, [cryptoType, validUser, props.userInfo]);
 
   const closeCart = () => {
     props.closeCart(false);
@@ -33,8 +78,13 @@ const ShoppingCart = (props) => {
     setSelectDelivery(true);
   };
 
-  const selectShipping = () => {
+  const selectShipping = async () => {
     setOrderType("verzenden");
+    const fetchin = await fetch(
+      `https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Csolana&vs_currencies=eur`
+    );
+    const data = await fetchin.json();
+    setCurrentPrices(data);
   };
 
   const selectPickUp = () => {
@@ -81,7 +131,7 @@ const ShoppingCart = (props) => {
         <div className={cl.closePosition}>
           <FaTimesCircle className={cl.close} onClick={closeCart} />
         </div>
-        {selectDelivery && (
+        {!selectDelivery && (
           <>
             <h1 className={cl.hero}>Winkelwagen</h1>
             <div className={cl.winkelInner}>
@@ -131,7 +181,10 @@ const ShoppingCart = (props) => {
             </div>
           </div>
         )}
-        {orderType === "verzenden" && (
+        {!validUser && orderType === "verzenden" && selectDelivery && (
+          <div className={cl.geenGegevens}>Voeg verzend gegevens toe</div>
+        )}
+        {orderType === "verzenden" && selectDelivery && validUser && (
           <div className={cl.verzendenBox}>
             <div className={cl.payWithBox}>
               <span>Betaal via</span>
@@ -162,7 +215,8 @@ const ShoppingCart = (props) => {
             </div>
           </div>
         )}
-        {payBy === "crypto" && (
+
+        {payBy === "crypto" && selectDelivery && (
           <div className={cl.cryptoPay}>
             <div className={cl.row1}>
               <span>Stap 1: Kies soort crypto</span>
@@ -184,7 +238,7 @@ const ShoppingCart = (props) => {
             <hr className={cl.hrs}></hr>
             {cryptoType !== "leeg" && (
               <div className={cl.row1}>
-                Stap 2: Maak 34
+                Stap 2: Maak {finalCryptoPrice}
                 {" " +
                   cryptoType.charAt(0).toUpperCase() +
                   cryptoType.slice(1)}{" "}
@@ -193,7 +247,7 @@ const ShoppingCart = (props) => {
             )}
           </div>
         )}
-        {orderType === "ophalen" && (
+        {orderType === "ophalen" && selectDelivery && (
           <div className={cl.ophalenBox}>
             <FaRegArrowAltCircleLeft
               className={cl.back2}
