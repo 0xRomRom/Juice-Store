@@ -46,10 +46,16 @@ const ShoppingCart = (props) => {
       return;
     }
     setNoPhone(false);
+    let finalPrice = 0;
+    props.orders.map((item) => {
+      console.log(item.prijs);
+      finalPrice += item.prijs;
+    });
 
     const finalOrder = {
       order: props.orders,
       gegevens: props.userInfo,
+      totalPrice: finalPrice,
     };
 
     fetch(
@@ -62,6 +68,9 @@ const ShoppingCart = (props) => {
         },
       }
     );
+    props.setOrders([]);
+    props.orderCount(0);
+    setOrderType("finished");
   };
 
   return (
@@ -161,6 +170,11 @@ const ShoppingCart = (props) => {
                 </button>
               </div>
             </div>
+          </div>
+        )}
+        {orderType === "finished" && (
+          <div className={cl.finishedBox}>
+            <h2>Uw bestelling wordt bereid!</h2>
           </div>
         )}
       </div>

@@ -22,6 +22,7 @@ const CurrentStock = (props) => {
       nicotine: nicotine1,
       hoeveelheid: counter1,
       id: props.ordered.length + nicotine1 + counter1,
+      prijs: counter1 * 25,
     };
     props.orders((prev) => [...prev, values]);
     props.counter((prevCount) => prevCount + counter1);
