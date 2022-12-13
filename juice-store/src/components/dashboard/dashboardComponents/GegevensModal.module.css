@@ -196,7 +196,7 @@
 
 @media only screen and (max-width: 400px) {
   .infoBox {
-    left: 12%;
+    left: 1%;
   }
   .row > input {
     font-family: "Open Sans";
@@ -211,10 +211,13 @@
     outline: 0;
     padding-left: 0.3rem;
   }
+  .row > span {
+    width: 13rem;
+  }
 }
 
-@media only screen and (max-width: 350px) {
-  .infoBox {
-    left: 8%;
+@media only screen and (max-width: 360px) {
+  .row > span {
+    width: 10rem;
   }
 }
