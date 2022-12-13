@@ -621,8 +621,22 @@
   }
 }
 
+@media only screen and (max-width: 440px) {
+  .geenGegevens {
+    font-size: 7vw;
+  }
+}
+
 @media only screen and (max-width: 400px) {
   .totalBox2 {
     top: 0rem;
+  }
+  .selectionBox {
+    transform: scale(0.9);
+  }
+  .back {
+    top: -9.6rem;
+    left: -2.5rem;
+    font-size: 1.6rem;
   }
 }
