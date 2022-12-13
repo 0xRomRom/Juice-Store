@@ -320,7 +320,9 @@ const ShoppingCart = (props) => {
                 </div>
                 <hr className={cl.hrs}></hr>
                 <div className={cl.row1}>
-                  <span>Stap 3: Verstuurd vanaf wallet: </span>
+                  <span className={cl.step3}>
+                    Stap 3: Verstuurd vanaf wallet:{" "}
+                  </span>
                   <input
                     type="text"
                     className={cl.addyInput}
@@ -382,7 +384,9 @@ const ShoppingCart = (props) => {
                   </ul>
                 );
               })}
-              <div className={cl.totalBox}>Totaal €{props.totalCount * 25}</div>
+              <div className={cl.totalBox2}>
+                Totaal €{props.totalCount * 25}
+              </div>
             </div>
             <div className={cl.pickupOrderBox}>
               <div className={cl.submitBox}>

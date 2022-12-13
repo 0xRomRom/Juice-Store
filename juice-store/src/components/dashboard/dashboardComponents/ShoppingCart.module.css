@@ -14,7 +14,7 @@
   left: 33%;
   position: fixed;
   border-radius: 1.5rem;
-  z-index: 10;
+  z-index: 40;
 }
 
 .hero {
@@ -138,6 +138,18 @@
   user-select: none;
 }
 
+.totalBox2 {
+  position: relative;
+  width: 8rem;
+  height: 2.5rem;
+  font-size: 1.3rem;
+  font-family: "Open Sans";
+  color: white;
+  top: 2.9rem;
+  left: 0.3rem;
+  user-select: none;
+}
+
 .submitBox {
   color: white;
   display: flex;
@@ -216,7 +228,6 @@
   width: 80%;
   left: 10%;
   height: 35rem;
-  /* border: 1px solid white; */
 }
 
 .orderList2 {
@@ -483,4 +494,135 @@
 
 .cryptoBack:hover {
   color: white;
+}
+
+@media only screen and (max-width: 1400px) {
+  .cart {
+    left: 30%;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .cart {
+    left: 25%;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .cart {
+    left: 20%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .cart {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+  }
+  .end {
+    position: absolute;
+    left: 92%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .closePosition {
+    left: 88%;
+  }
+  .cryptoBack {
+    left: -5%;
+  }
+  .hrs {
+    width: 98%;
+    left: 1%;
+  }
+  .cryptoPay {
+    width: 98%;
+    left: 1%;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .verzendkosten {
+    position: absolute;
+    top: 9rem;
+    left: 0rem;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  .verzendenBox {
+    position: relative;
+    width: 100%;
+    left: 0rem;
+    height: 6rem;
+    /* border: 1px solid white; */
+  }
+  .cryptoBack {
+    left: 3%;
+  }
+  .step3 {
+    font-size: 0.9rem;
+    width: 8rem;
+  }
+  .row2 {
+    font-size: 0.9rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .listItem {
+    width: 100%;
+    gap: 0rem;
+  }
+  .winkelInner {
+    position: relative;
+    width: 99%;
+    left: 0.5%;
+    border-radius: 0.5rem;
+    top: 1rem;
+    height: 15rem;
+  }
+  .end {
+    left: 90%;
+  }
+  .row2 {
+    font-size: 0.7rem;
+  }
+  .step3 {
+    font-size: 0.9rem;
+  }
+}
+
+@media only screen and (max-width: 570px) {
+  .back {
+    left: -5%;
+  }
+  .back2 {
+    left: 2%;
+    top: -2.4rem;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+}
+
+@media only screen and (max-width: 500px) {
+  .ophalenBox {
+    position: relative;
+    width: 99%;
+    left: 0.5%;
+    height: 35rem;
+  }
+  .totalBox {
+    top: 7rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .totalBox2 {
+    top: 0rem;
+  }
 }
