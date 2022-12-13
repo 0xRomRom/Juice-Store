@@ -43,4 +43,58 @@
   position: relative;
   top: 2rem;
   left: 1.5rem;
+  text-align: center;
+}
+
+@media only screen and (max-width: 1180px) {
+  .modal {
+    position: relative;
+    width: 70vw;
+    height: 15rem;
+    left: 15%;
+    top: 2rem;
+    background: linear-gradient(180deg, rgb(194, 30, 255), blue);
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .btnBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .addInfo {
+    position: relative;
+    left: 0;
+    top: 0;
+  }
+  .geen {
+    position: relative;
+    top: -2rem;
+    left: -0.5rem;
+  }
+  .hero {
+    padding-top: 1rem;
+  }
+}
+
+@media only screen and (max-width: 1180px) {
+  .modal {
+    top: 6rem;
+  }
+}
+
+@media only screen and (max-width: 590px) {
+  .modal {
+    position: relative;
+    width: 90vw;
+    height: 15rem;
+    left: 5%;
+  }
 }

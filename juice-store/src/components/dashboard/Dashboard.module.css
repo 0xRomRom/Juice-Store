@@ -4,3 +4,9 @@
   height: 100vh;
   /* background: linear-gradient(180deg, rgb(194, 30, 255), blue); */
 }
+
+@media only screen and (max-width: 1180px) {
+  .dashboard {
+    min-height: 73rem !important;
+  }
+}

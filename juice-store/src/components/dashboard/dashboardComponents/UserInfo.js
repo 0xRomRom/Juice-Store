@@ -38,18 +38,20 @@ const UserInfo = (props) => {
   return (
     <div className={cl.modal}>
       <h1 className={cl.hero}>Gegevens</h1>
-      {!gegevens ? (
-        <>
-          <span className={cl.geen}>Geen gegevens gevonden</span>
+      <div className={cl.btnBox}>
+        {!gegevens ? (
+          <>
+            <span className={cl.geen}>Geen gegevens gevonden</span>
+            <button className={cl.addInfo} onClick={openGegevensModal}>
+              Toevoegen <FaFolderPlus />
+            </button>
+          </>
+        ) : (
           <button className={cl.addInfo} onClick={openGegevensModal}>
-            Toevoegen <FaFolderPlus />
+            Beheren <FaFolderPlus />
           </button>
-        </>
-      ) : (
-        <button className={cl.addInfo} onClick={openGegevensModal}>
-          Beheren <FaFolderPlus />
-        </button>
-      )}
+        )}
+      </div>
       {gegevensModal ? (
         <GegevensModal
           closed={setGegevensModal}

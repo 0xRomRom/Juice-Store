@@ -22,7 +22,7 @@
   height: 40rem;
   background-color: black;
   top: 10rem;
-  left: 33%;
+  left: 32vw;
   position: fixed;
   border-radius: 1.5rem;
   z-index: 10;
@@ -123,4 +123,32 @@
   top: 17rem;
   font-family: "Open Sans";
   user-select: none;
+}
+
+@media only screen and (max-width: 1500px) {
+  .modal {
+    left: 25vw;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .modal {
+    left: 22vw;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .modal {
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 5;
+  }
+  .backdrop {
+    background-color: black;
+  }
+
+  .closePosition {
+    left: 90%;
+  }
 }

@@ -67,3 +67,90 @@
 .contact:hover {
   border-radius: 1rem;
 }
+
+@media only screen and (max-width: 720px) {
+  .nav {
+    position: fixed;
+    top: 0rem;
+    z-index: 20;
+    background-color: black;
+    height: 4rem;
+  }
+  .moonjuice {
+    width: 15rem;
+    top: 1rem;
+  }
+  .contact {
+    transform: scale(0.9);
+  }
+  .cart {
+    transform: scale(0.9);
+  }
+  .logout {
+    transform: scale(0.9);
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .nav {
+    gap: 0.6rem;
+    padding-right: 1rem;
+  }
+  .moonjuice {
+    width: 15rem;
+    top: 1rem;
+  }
+  .contact {
+    transform: scale(0.9);
+  }
+  .cart {
+    transform: scale(0.9);
+  }
+  .logout {
+    transform: scale(0.9);
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .nav {
+    gap: 0.2rem;
+    padding-right: 1rem;
+    height: 3rem;
+  }
+  .moonjuice {
+    width: 10rem;
+    top: 0.8rem;
+  }
+  .contact {
+    transform: scale(0.7);
+  }
+  .cart {
+    transform: scale(0.7);
+  }
+  .logout {
+    transform: scale(0.7);
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .nav {
+    gap: 0rem;
+    padding-right: 1rem;
+    height: 3rem;
+  }
+  .moonjuice {
+    width: 8rem;
+    top: 0.8rem;
+  }
+  .contact {
+    transform: scale(0.5);
+    position: relative;
+    left: 1rem !important;
+  }
+  .cart {
+    transform: scale(0.5);
+  }
+  .logout {
+    transform: scale(0.5);
+  }
+}

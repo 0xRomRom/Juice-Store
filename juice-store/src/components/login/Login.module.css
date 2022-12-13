@@ -76,3 +76,10 @@
   width: 25rem;
   border-radius: 3rem;
 }
+
+@media only screen and (max-width: 450px) {
+  .moonjuice {
+    width: 20rem;
+    left: 5%;
+  }
+}
